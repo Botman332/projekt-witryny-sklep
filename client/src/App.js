@@ -18,13 +18,13 @@ function App() {
   return (
     <div className='App'>
 
-    {(typeof backendData.users === 'undefined') ? (
+    {/* {(typeof backendData.users === 'undefined') ? (
       <p>Loading...</p>
     ): (
       backendData.users.map((user, i) => (
       <p key={i}>{user}</p>
       ))
-    )}
+    )} */}
 
     </div>
   )
