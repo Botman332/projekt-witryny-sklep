@@ -10,7 +10,7 @@ app.get("/api", (req, res) => {
 
 app.listen(5000, () => {console.log("Server started on port 5000")}) 
 
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-  });
+// app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+//   });
 
