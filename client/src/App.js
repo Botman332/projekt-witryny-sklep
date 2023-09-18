@@ -1,5 +1,9 @@
 import React, {useEffect, useState} from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import Navbar from './Navbar';
+import Home from './Home';
+import Zaloguj from './Zaloguj';
 
 function App() {
 
@@ -16,9 +20,9 @@ function App() {
   }, [])
 
   return (
-    <div className='App'>
-
-    {/* {(typeof backendData.users === 'undefined') ? (
+    <Router>
+      <div className='App'>
+        {/* {(typeof backendData.users === 'undefined') ? (
       <p>Loading...</p>
     ): (
       backendData.users.map((user, i) => (
@@ -26,7 +30,24 @@ function App() {
       ))
     )} */}
 
-    </div>
+      <Navbar/>
+        <Switch>
+          <Route exact path="/">
+            <Home/>
+          </Route>
+          <Route path="/zaloguj">
+            <Zaloguj/>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+    
+
+    
+
+      
+
+    
   )
 }
 
