@@ -42,12 +42,6 @@ function App() {
       </div>
     </Router>
     
-
-    
-
-      
-
-    
   )
 }
 

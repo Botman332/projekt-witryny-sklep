@@ -1,0 +1,30 @@
+/* NAVBAR STYLES */
+
+.navbar{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: rgb(73, 70, 70);
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 0.5em 0.5em 0;
+    border: 1px solid rgb(73, 70, 70);
+    padding: 2px;
+    border-radius: 5%;
+}
+
+/* ZALOGUJ STYLES */
+
+.loginForm{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loginForm input{
+    margin-bottom: 0.5em;
+}
+
