@@ -19,17 +19,17 @@ export default function Navbar() {
       }
     
     return ( 
-        <div className="navbar">
-            {/* wyświetlić nazwe uzytkownika tylko jesli istnieje */}
-            {currentUser && <strong>Email: {currentUser.email}</strong>} 
-            <Link to="/">Strona główna</Link>
-            <Link to="Zaloguj">Zaloguj się</Link>
-            <Link to="/update-profile" >
-                Update Profile
-            </Link>
-            <button variant="link" onClick={handleLogout}>
-                Log Out
-            </button>
+        <div>
+          
+          <div className="navbar">
+            <Link to="/"> <img className="Logo" src="logo.png" /> </Link> 
+            {!currentUser && <Link to="Zaloguj" id='LogNav'>Zaloguj się</Link>}
+            {currentUser && 
+            <button variant="link" className="LogOutNav" onClick={handleLogout}>
+                Wyloguj
+            </button>}
+            </div>
+            {currentUser && <strong>Email: {currentUser.email}</strong>}
         </div>
      );
 }

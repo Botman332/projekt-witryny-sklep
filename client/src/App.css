@@ -1,5 +1,25 @@
 /* NAVBAR STYLES */
-
+.Logo {
+    height:120px;
+    width:120px;
+}
+#LogNav {
+    margin-top:8em;
+    border: 1px black solid;
+    border-radius: 5%;
+}
+.LogOutNav {
+    border-radius: 5%;
+    height: 25px;
+    margin-top:9em;
+    border: 1px black solid;
+    background: none;
+    width: 65px;
+    text-decoration: none;
+    color: rgb(73, 70, 70);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:15px;
+}
 .navbar{
     display: flex;
     justify-content: flex-end;
@@ -11,7 +31,6 @@
     color: rgb(73, 70, 70);
     font-family: Arial, Helvetica, sans-serif;
     margin: 0 0.5em 0.5em 0;
-    border: 1px solid rgb(73, 70, 70);
     padding: 2px;
     border-radius: 5%;
 }
