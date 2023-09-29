@@ -4,6 +4,11 @@ import './App.css';
 import Navbar from './Navbar';
 import Home from './Home';
 import Zaloguj from './Zaloguj';
+import { AuthProvider } from "./contexts/AuthContext";
+import Rejestracja from './Rejestracja';
+import ResetPassword from './ResetPassword';
+;
+
 
 function App() {
 
@@ -29,7 +34,10 @@ function App() {
       <p key={i}>{user}</p>
       ))
     )} */}
-
+    </div>
+    
+      
+      <AuthProvider>
       <Navbar/>
         <Switch>
           <Route exact path="/">
@@ -38,8 +46,15 @@ function App() {
           <Route path="/zaloguj">
             <Zaloguj/>
           </Route>
+          <Route path="/zarejestruj">
+            <Rejestracja/>
+          </Route>
+          <Route path="/reset-password">
+            <ResetPassword/>
+          </Route>
         </Switch>
-      </div>
+      
+      </AuthProvider>
     </Router>
     
   )
