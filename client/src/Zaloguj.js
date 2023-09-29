@@ -7,7 +7,7 @@ const Zaloguj = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
     const { login } = useAuth()
-    const [error, setError] = useState("")
+    const [error, setError] = useState()
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
@@ -23,7 +23,7 @@ const Zaloguj = () => {
           await login(emailRef.current.value, passwordRef.current.value)
           history.push("/")
         } catch {
-          setError("Failed to log in")
+          setError("Niepoprawny email lub hasło")
         }
     
         setLoading(false)
@@ -31,8 +31,8 @@ const Zaloguj = () => {
     
 
     return ( 
-        <div className="zaloguj">
-                       
+        <div className="zaloguj">   
+              
             <form className="loginForm" onSubmit={handleSubmit}>
                 <label>Email:</label>
                 <input type="email" ref={emailRef} required />
@@ -43,11 +43,13 @@ const Zaloguj = () => {
                 <button>Zaloguj się</button>
             </form>
 
+            {error && <p className="Error">{error}</p>}            
+
             <div className="">
-                <Link to="/">Forgot Password?</Link>
+                <Link to="/reset-password">Zapomniałeś hasła?</Link>
             </div>
             <div className="">
-              Need an account? <Link to="/zarejestruj">Sign Up</Link>
+              NIe masz jeszcze konta? <Link to="/zarejestruj">Zarejestruj się</Link>
             </div>
 
         </div>

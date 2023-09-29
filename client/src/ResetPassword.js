@@ -27,7 +27,7 @@ export default function ResetPassword() {
 
   return (
     <>
-          <h2>Password Reset</h2>
+          <h2>Odzyskaj hasło</h2>
           {error && {error}}
           {message && {message}}
           <form onSubmit={handleSubmit}>
@@ -43,7 +43,7 @@ export default function ResetPassword() {
             <Link to="/zaloguj">Zaloguj się</Link>
           </div>
       <div>
-        Need an account? <Link to="/zarejestruj">Sign Up</Link>
+        Nie masz konta? <Link to="/zarejestruj">Zarejstruj się!</Link>
       </div>
     </>
   )
