@@ -4,3 +4,4 @@ By uruchomić aplikację:
 2. W katalogu client: "npm install" "npm run start"
 
 Link do hostingu
+https://auth-production-eb241.web.app/
