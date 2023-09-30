@@ -26,7 +26,7 @@ export default function Navbar() {
             {currentUser && 
             <button variant="link" className="LogOutNav" onClick={handleLogout}>Wyloguj się</button>}
             </div>
-            {currentUser && <strong>Email: {currentUser.email}</strong>}
+            {currentUser && <strong>Zalogowano jako: {currentUser.email}</strong>}
         </div>
      );
 }
