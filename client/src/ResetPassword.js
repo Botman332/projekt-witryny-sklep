@@ -17,9 +17,9 @@ export default function ResetPassword() {
       setError("")
       setLoading(true)
       await resetPassword(emailRef.current.value)
-      setMessage("Check your inbox for further instructions")
+      setMessage("Sprawdź swoją skrzynke pocztową")
     } catch {
-      setError("Failed to reset password")
+      setError("Nie udało się zresetować hasła")
     }
 
     setLoading(false)
@@ -28,8 +28,7 @@ export default function ResetPassword() {
   return (
     <>
     <div className="ResetP">
-          {error && {error}}
-          {message && {message}}
+          {error && <p>{error}</p> }
           <form onSubmit={handleSubmit} className="ResForm">
           <h2>Odzyskaj hasło</h2>
               <label>Email</label>
@@ -38,6 +37,7 @@ export default function ResetPassword() {
             <button disabled={loading} type="submit" id="ResBut">
               Wyślij
             </button>
+            {message && <p>{message}</p> }
           </form>
       </div>
     </>
