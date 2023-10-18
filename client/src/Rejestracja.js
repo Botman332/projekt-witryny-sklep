@@ -14,21 +14,41 @@ export default function Rejestracja() {
 
     async function handleSubmit(e) {
         e.preventDefault()
-    
+      
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-          return setError("Passwords do not match")
+          return setError("Hasła się nie zgadzają")
         }
-    
+        else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/.test(passwordRef.current.value)){
+          return setError("Hasło nie spełnia wymogów bezpieczeństwa\n(Min 8 znaków, jedna wielka litera, jedna cyfra, jeden znak specjalny)")
+        }
+
+        
+        
         try {
           setError("")
           setLoading(true)
           await signup(emailRef.current.value, passwordRef.current.value)
+          await fetch("/register-user", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({email: emailRef.current.value, password: passwordRef.current.value})
+          })
           history.push("/")
-        } catch {
-          setError("Failed to create an account")
+        } catch (e) {
+          switch (e.code){
+            case "auth/invalid-email":
+              setError("Nieprawidłowy email")
+              break;
+            case "auth/email-already-exists":
+              setError("Istnieje już konto o podanym adresie email")
+              break;
+            default:
+              setError("Błąd tworzenia konta");
+          }       
         }
-    
-        setLoading(false)
+            setLoading(false)
       }
 
     return (
@@ -42,7 +62,7 @@ export default function Rejestracja() {
                 <input type="email" ref={emailRef} required />
             </div>
             <div id="password">
-                <label>Hasło::</label>
+                <label>Hasło:</label>
                 <br></br>
                 <input type="password" ref={passwordRef} required />
             </div>
@@ -53,6 +73,11 @@ export default function Rejestracja() {
             </div>
             <button className='Sbmt' disabled={loading} type='submit'>Zarejestruj się</button>
         </form>
+
+        {error && <p className="Error">{error}</p>}    
+
+        <br/>
+        <br/>
         <div className="signComm">
             Masz już konto? <Link to="/zaloguj" id="LogLink">Zaloguj się</Link>
         </div>
