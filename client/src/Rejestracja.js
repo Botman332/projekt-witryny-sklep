@@ -28,12 +28,27 @@ export default function Rejestracja() {
           setError("")
           setLoading(true)
           await signup(emailRef.current.value, passwordRef.current.value)
+          await fetch("/register-user", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({email: emailRef.current.value, password: passwordRef.current.value})
+          })
           history.push("/")
-        } catch {
-          setError("Błąd tworzenia konta")
+        } catch (e) {
+          switch (e.code){
+            case "auth/invalid-email":
+              setError("Nieprawidłowy email")
+              break;
+            case "auth/email-already-exists":
+              setError("Istnieje już konto o podanym adresie email")
+              break;
+            default:
+              setError("Błąd tworzenia konta");
+          }       
         }
-    
-        setLoading(false)
+            setLoading(false)
       }
 
     return (
@@ -47,7 +62,7 @@ export default function Rejestracja() {
                 <input type="email" ref={emailRef} required />
             </div>
             <div id="password">
-                <label>Hasło::</label>
+                <label>Hasło:</label>
                 <br></br>
                 <input type="password" ref={passwordRef} required />
             </div>

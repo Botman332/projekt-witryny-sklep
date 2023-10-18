@@ -8,7 +8,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import Rejestracja from './Rejestracja';
 import ResetPassword from './ResetPassword';
 import Footer from './Footer';
-;
+import Admin from './Admin';
 
 
 function App() {
@@ -50,6 +50,9 @@ function App() {
           </Route>
           <Route path="/reset-password">
             <ResetPassword/>
+          </Route>
+          <Route path="/admin">
+            <Admin/>
           </Route>
         </Switch>
         <Footer/>

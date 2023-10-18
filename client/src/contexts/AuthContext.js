@@ -54,6 +54,8 @@ export function AuthProvider({ children }) {
     updatePassword
   }
 
+  //Dodać currentDbUser
+
   return (
     <AuthContext.Provider value={value}>
       {!loading && children}

@@ -1,10 +1,13 @@
 const express = require('express')
 const path = require('path')
 const app = express()
-const mysql= require('mysql');
+const mysql = require('mysql');
+const bcrypt = require('bcrypt'); 
 require('dotenv').config();
 
 app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })) ;
 
 app.get("/api", (req, res) => {
     res.json({ "users": ["userOne", "UserTwo", "UserThree"] })
@@ -28,12 +31,28 @@ const connection = mysql.createConnection({
     console.log('connected as id ' + connection.threadId);
   });
   
-  connection.query('SELECT * FROM users', function (error, results, fields) {
-    if (error) throw error;
-    console.log('The solution is: ', results);
-  });
+  // connection.query('SELECT * FROM users', function (error, results, fields) {
+  //   if (error) throw error;
+  //   console.log('The solution is: ', results);
+    
+  // });
+
+  app.post("/register-user", async (req, res) => {
+    const hashedPassword = await bcrypt.hash(req.body.password, 12);
+    connection.query({
+      sql: 'INSERT INTO users (email, password) VALUES(?, ?)',
+      values: [req.body.email, hashedPassword]
+  }, function (error, results, fields){
+      if (error) throw error;
+      console.log(results);
+    })
+    console.log(req.body.email);
+    res.send('succes');
+    
+})
   
-  connection.end();
+// connection.end();
+
 // app.get('*', (req, res) => {
 //     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 //   });
