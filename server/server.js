@@ -44,11 +44,33 @@ const connection = mysql.createConnection({
       values: [req.body.email, hashedPassword]
   }, function (error, results, fields){
       if (error) throw error;
-      console.log(results);
+      // console.log(results);
     })
-    console.log(req.body.email);
-    res.send('succes');
-    
+    // console.log(req.body.email);
+    res.send('succes');   
+})
+
+
+//cft6&YGV
+//Zrobić bugfixa żeby nie sprawdzał roli konta które nie istnieje
+app.post("/admin-login", async (req, res) => {
+    connection.query({
+    sql: 'SELECT rola FROM users WHERE email=?',
+    values: [req.body.email]
+},  function (error, results, fields){
+    if (error) throw error;
+    res.json(results[0].rola)
+  })   
+})
+
+app.post("/get-zamowienia", async (req, res) => {
+  connection.query({
+  sql: 'SELECT * FROM zamowienie',
+},  function (error, results, fields){
+  if (error) throw error;
+  res.json(results)
+  console.log(results);
+})   
 })
   
 // connection.end();
