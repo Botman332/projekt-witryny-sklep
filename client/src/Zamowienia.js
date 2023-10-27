@@ -66,7 +66,7 @@ const Zamowienia = () => {
     return ( 
     <div className="zamowienia">
         <h1>Zamówienia</h1>
-      <Table data={zamowienia} /> {/* Przekazanie danych do komponenty Table */}
+      <Table data={zamowienia} /> 
     </div> 
     );
 }

@@ -69,7 +69,25 @@ app.post("/get-zamowienia", async (req, res) => {
 },  function (error, results, fields){
   if (error) throw error;
   res.json(results)
-  console.log(results);
+})   
+})
+
+app.post("/get-produkty", async (req, res) => {
+  connection.query({
+  sql: 'SELECT * FROM produkty',
+},  function (error, results, fields){
+  if (error) throw error;
+  res.json(results)
+})   
+})
+
+app.delete("/delete-produkt", async (req, res) => {
+  connection.query({
+  sql: 'DELETE FROM produkty WHERE produkt_ID=?',
+  values: [req.body.productId]
+},  function (error, results, fields){
+  if (error) throw error;
+  res.send("succes")
 })   
 })
   
