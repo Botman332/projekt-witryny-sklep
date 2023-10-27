@@ -221,7 +221,10 @@ h1 {
     background:rgb(31, 32, 31);
 }
 
-
+.tabelka td, tr, th, table{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
 
 
 /* FOOTER STYLES */

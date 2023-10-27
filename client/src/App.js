@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import PrivateRoute from "./PrivateRoute"
 import Navbar from './Navbar';
 import Home from './Home';
 import Zaloguj from './Zaloguj';
@@ -9,6 +10,8 @@ import Rejestracja from './Rejestracja';
 import ResetPassword from './ResetPassword';
 import Footer from './Footer';
 import Admin from './Admin';
+import AdminLogin from './AdminLogin';
+import Zamowienia from './Zamowienia';
 
 
 function App() {
@@ -39,6 +42,12 @@ function App() {
     <AuthProvider>
       <Navbar/>
         <Switch>
+        <PrivateRoute path="/admin">
+            <Admin/>
+          </PrivateRoute>
+          <PrivateRoute path="/zamowienia">
+              <Zamowienia/>
+          </PrivateRoute>
           <Route exact path="/">
             <Home/>
           </Route>
@@ -51,8 +60,8 @@ function App() {
           <Route path="/reset-password">
             <ResetPassword/>
           </Route>
-          <Route path="/admin">
-            <Admin/>
+          <Route path="/admin-login">
+            <AdminLogin/>
           </Route>
         </Switch>
         <Footer/>
