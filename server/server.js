@@ -63,19 +63,61 @@ app.post("/admin-login", async (req, res) => {
   })   
 })
 
+// POBIERANIE ZAMÓWIEŃ
 app.post("/get-zamowienia", async (req, res) => {
   connection.query({
   sql: 'SELECT * FROM zamowienie',
 },  function (error, results, fields){
   if (error) throw error;
   res.json(results)
-  console.log(results);
+})   
+})
+
+// POBIERANIE PRODUKTÓW
+app.post("/get-produkty", async (req, res) => {
+  connection.query({
+  sql: 'SELECT * FROM produkty ORDER BY produkt_ID ASC',
+},  function (error, results, fields){
+  if (error) throw error;
+  res.json(results)
+})   
+})
+
+// USUWANIE PRODUKTU
+app.delete("/delete-produkt", async (req, res) => {
+  connection.query({
+  sql: 'DELETE FROM produkty WHERE produkt_ID=?',
+  values: [req.body.productId]
+},  function (error, results, fields){
+  if (error) throw error;
+  res.send("succes")
+})   
+})
+
+// DODAWANIE PRODUKTU
+// WALIDACJA CENY W FORMULARZU
+app.post("/add-product", async (req, res) => {
+  connection.query({
+  sql: 'INSERT INTO produkty (nazwa, opis, cena) VALUES (?, ?, ?)',
+  values: [req.body.nazwa, req.body.cena, req.body.opis]
+},  function (error, results, fields){
+  if (error) throw error;
+  res.send("succes")
+})   
+})
+
+// MODYFIKOWANIE PRODUKTU
+app.put("/update-product", async (req, res) => {
+  connection.query({
+  sql: 'UPDATE produkty SET nazwa = ?, cena = ?, opis=? WHERE produkt_ID = ?',
+  values: [req.body.nazwa, req.body.cena, req.body.opis, req.body.id]
+},  function (error, results, fields){
+  if (error) throw error;
+  res.send("succes")
 })   
 })
   
 // connection.end();
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-//   });
+
 

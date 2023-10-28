@@ -34,7 +34,7 @@ const Zaloguj = () => {
     return ( 
         <div className="zaloguj">   
             <form className="loginForm" onSubmit={handleSubmit}>
-            <h2>Zaloguj się</h2>
+              <h2>Zaloguj się</h2>
                 <label>Email:</label>
                 <input type="email" ref={emailRef} required />
 

@@ -6,6 +6,6 @@ export default function PrivateRoute({ children }) {
   
   const { currentUser } = useAuth();
   
-  return currentUser ? children : <Redirect to="/login" />;
+  return currentUser ? children : <Redirect to="/Zaloguj" />;
 
 }

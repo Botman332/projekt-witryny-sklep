@@ -18,6 +18,9 @@ h1 {
 #LogNav {
     color:white;
 }
+#AdminNav {
+    color:white;
+}
 .LogOutNav {
     background: none;
     width: 7em;
@@ -27,11 +30,13 @@ h1 {
     font-size:17px;
     font-family: "Quicksand";
 }
-.navbar{
+.navTxt {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     flex-direction: row;
     align-items:baseline;
+}
+.navbar{
     background-color:rgb(21, 20, 20);
 }
 
@@ -45,6 +50,25 @@ h1 {
     text-decoration: solid;
 }
 
+/* ADMIN PANEL, NAVBAR AND LOGIN */
+
+.AdminNavbar {
+    color:black;
+
+}
+.AdminNavbar a {
+    color:black;
+    display:flex;
+    justify-content:center;
+    align-items:baseline;
+    font-size: 2em;
+    text-decoration: none;
+    font-family: "Quicksand";
+}
+.adminLogin {
+    margin-top:2em;
+    font-family: "Quicksand";
+}
 
 /* ZALOGUJ STYLES */
 .zaloguj {
@@ -226,7 +250,87 @@ h1 {
     border-collapse: collapse;
 }
 
-
+/* ZAMOWIENIA */
+.produkty {
+    font-family: "Quicksand";
+}
+.zamowienia{
+    font-family: "Quicksand";
+}
+.prodaddForm {
+    font-size:17px;
+    font-family: "Quicksand";
+    margin-left: 1em;
+}
+.prodaddButton {
+    margin-top:1em;
+    width: 6em;
+    height:2em;
+    background:rgb(57, 151, 57);
+    color:white;
+    border-bottom: 2px black solid;
+    border-top:none;
+    border-left:none;
+    border-right:none;
+    border-radius: 2%;
+}
+.prodaddButton:hover {
+    background:rgb(35, 94, 35);
+}
+.produpdateForm {
+    font-size:17px;
+    font-family: "Quicksand";
+    margin-left: 1em;
+}
+.produpdateButton {
+    margin-top:1em;
+    width: 6em;
+    height:2em;
+    background:rgb(57, 151, 57);
+    color:white;
+    border-bottom: 2px black solid;
+    border-top:none;
+    border-left:none;
+    border-right:none;
+    border-radius: 2%;
+}
+.produpdateButton:hover{
+    background:rgb(35, 94, 35);
+}
+.tabButt {
+    background:rgb(57, 151, 57);
+    border-bottom: 2px black solid;
+    border-top:none;
+    border-left:none;
+    border-right:none;
+    border-radius: 2%;
+    color:white;
+    font-family: "Quicksand";
+}
+.tabButt:hover{
+    background:rgb(35, 94, 35);
+}
+/* PRODUKTY */
+.panTab {
+    background: none;
+    width: 7em;
+    font-family: Arial, Helvetica, sans-serif;
+    color:white;
+    border:none;
+    font-size:17px;
+    font-family: "Quicksand";
+}
+.pAddButt {
+    margin-top:0.2em;
+    border-bottom: 2px black solid;
+    border-radius: 2%;
+    background:rgb(88, 93, 88);
+    color:white;
+    font-family: "Quicksand";
+}
+.pAddButt:hover{
+    background:rgb(31, 32, 31);
+}
 /* FOOTER STYLES */
 .footer {
     background-color:rgb(21, 20, 20);

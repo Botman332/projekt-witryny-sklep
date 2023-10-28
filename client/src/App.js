@@ -12,6 +12,7 @@ import Footer from './Footer';
 import Admin from './Admin';
 import AdminLogin from './AdminLogin';
 import Zamowienia from './Zamowienia';
+import Produkty from './Produkty';
 
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
           </PrivateRoute>
           <PrivateRoute path="/zamowienia">
               <Zamowienia/>
+          </PrivateRoute>
+          <PrivateRoute path="/produkty">
+              <Produkty/>
           </PrivateRoute>
           <Route exact path="/">
             <Home/>
