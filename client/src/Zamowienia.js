@@ -66,7 +66,7 @@ const Zamowienia = () => {
     return ( 
     <div className="zamowienia">
         <h1>Zamówienia</h1>
-      <Table data={zamowienia} /> 
+      <Table data={zamowienia} className="zamTab"/> 
     </div> 
     );
 }

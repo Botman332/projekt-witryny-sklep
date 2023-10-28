@@ -136,17 +136,17 @@ const Produkty = () => {
                                 <td>{item.cena}</td>
                                 <td>{item.opis}</td>
                                 <td>
-                                    <button onClick={() => handleDelete(item.produkt_ID)}>Usuń</button>
+                                    <button onClick={() => handleDelete(item.produkt_ID)} className="tabButt">Usuń</button>
                                 </td>
                                 <td>
-                                    <button onClick={() => handleUpdateShow(item.produkt_ID, item.nazwa, item.cena, item.opis)}>Zmodyfikuj</button>
+                                    <button onClick={() => handleUpdateShow(item.produkt_ID, item.nazwa, item.cena, item.opis)} className="tabButt">Zmodyfikuj</button>
                                 </td>
                             </tr>
                         ))
                     )}                  
                 </tbody>
             </table>
-            <button onClick={handleAddShow}>Dodaj produkt</button>
+            <button onClick={handleAddShow} className="pAddButt">Dodaj produkt</button>
             </div>
         );
       }
@@ -154,19 +154,23 @@ const Produkty = () => {
       // FORMULARZ DODAWANIA
       function AddForm (){
         return(
-            <form className="addForm" onSubmit={handleAddProduct}>
+            <form className="prodaddForm" onSubmit={handleAddProduct}>
                 <h2>Dodaj produkt</h2>
 
                 <label>Nazwa</label>
+                <br></br>
                 <input type="text" ref={addNazwa} required/>
-
+                <br></br>
                 <label>Cena</label>
+                <br></br>
                 <input type="text" ref={addCena} required/>
+                <br></br>
 
                 <label>Opis</label>
+                <br></br>
                 <input type="text" ref={addOpis} required/>
-
-                <button type="submit">Dodaj</button>
+                <br></br>
+                <button type="submit" className="prodaddButton">Dodaj</button>
             </form>
         )
       }
@@ -174,19 +178,22 @@ const Produkty = () => {
       // FORMULARZ UPDATOWANIA
       function UpdateForm (data){
         return(
-            <form className="updateForm" onSubmit={handleUpdateProduct}>
+            <form className="produpdateForm" onSubmit={handleUpdateProduct}>
                 <h2>Zmodyfikuj produkt</h2>
 
                 <label>Nazwa</label>
+                <br></br>
                 <input type="text" ref={updateNazwa} required defaultValue={selectedProduct[1]} />
-
+                <br></br>
                 <label>Cena</label>
+                <br></br>
                 <input type="text" ref={updateCena} required defaultValue={selectedProduct[2]}/>
-
+                <br></br>
                 <label>Opis</label>
+                <br></br>
                 <input type="text" ref={updateOpis} required defaultValue={selectedProduct[3]}/>
-
-                <button type="submit">Zmodyfikuj</button>
+                <br></br>
+                <button type="submit" className="produpdateButton">Zmodyfikuj</button>
             </form>
         )
       }
@@ -194,7 +201,7 @@ const Produkty = () => {
     return ( 
         <div className="produkty">
             <h1>Produkty</h1>
-      <Table data={produkty} />
+      <Table data={produkty} className="panTab" />
       {isAddShown && <AddForm />}
       {isUpdateShown && <UpdateForm />}  
         </div>
