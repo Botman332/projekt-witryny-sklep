@@ -18,6 +18,9 @@ h1 {
 #LogNav {
     color:white;
 }
+#AdminNav {
+    color:white;
+}
 .LogOutNav {
     background: none;
     width: 7em;
@@ -27,11 +30,13 @@ h1 {
     font-size:17px;
     font-family: "Quicksand";
 }
-.navbar{
+.navTxt {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     flex-direction: row;
     align-items:baseline;
+}
+.navbar{
     background-color:rgb(21, 20, 20);
 }
 
@@ -45,6 +50,25 @@ h1 {
     text-decoration: solid;
 }
 
+/* ADMIN PANEL, NAVBAR AND LOGIN */
+
+.AdminNavbar {
+    color:black;
+
+}
+.AdminNavbar a {
+    color:black;
+    display:flex;
+    justify-content:center;
+    align-items:baseline;
+    font-size: 2em;
+    text-decoration: none;
+    font-family: "Quicksand";
+}
+.adminLogin {
+    margin-top:2em;
+    font-family: "Quicksand";
+}
 
 /* ZALOGUJ STYLES */
 .zaloguj {
