@@ -3,53 +3,112 @@ import React, { useRef, useState, useEffect } from "react"
 const Produkty = () => {
     
     let [produkty, setProdukty] = useState([])
-    // let [selectedProduct, setSelectedProduct] = useState ()
-    const [isShown, setIsShown] = useState(false);
+    let [selectedProduct, setSelectedProduct] = useState ([])
+    const [isAddShown, setIsAddShown] = useState(false);
+    const [isUpdateShown, setIsUpdateShown] = useState(false);
     const [loading, setLoading] = useState(false);
+    const addNazwa = useRef();
+    const addCena = useRef();
+    const addOpis = useRef();
+    const updateNazwa = useRef();
+    const updateCena = useRef();
+    const updateOpis = useRef();
 
-    async function handleDelete (productId) {
-        // setIsShown(current => !current);
-        
+    // POBIERANIE PRODUKTU
+    async function getProdukty (){
+        await fetch("/get-produkty", {
+            method: "POST"
+        }).then((response) =>{
+            return response.json();
+        }).then(function (data) {
+            setProdukty(data);
+        })
+    }
+
+    // USUWANIE PRODUKTU
+    async function handleDelete (productId) {     
         setLoading(true); 
-
-        
         await fetch("/delete-produkt", {
             method: 'DELETE', // Przyjmij odpowiednią metodę HTTP
             headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({productId: productId})     
+            body: JSON.stringify({productId: productId})     
         })
         .catch((error) => {
             console.error('Błąd podczas usuwania produktu', error);
         })
         .finally(() => {
             setLoading(false);
-            document.location.reload();
-        });
-
-        
+            getProdukty();
+        });   
       };
 
+    // POKAŻ FORMULARZ DODAWANIA
+    function handleAddShow (){
+        // setIsAddShown(current => !current); 
+        setIsAddShown(true);   
+    }
 
-    useEffect(() => {
-        async function getProdukty (){
-            await fetch("/get-produkty", {
-                method: "POST"
-            }).then((response) =>{
-                return response.json();
-            }).then(function (data) {
-                setProdukty(data);
-            })
-        }
+    function handleUpdateShow (ID, nazwa, cena, opis){
+        // setIsAddShown(current => !current); 
+        setIsUpdateShown(true);
+        console.log(ID + nazwa + cena + opis)
+        setSelectedProduct([ID, nazwa, cena, opis])
+        console.log(selectedProduct)   
+    }
+
+    //DODAWANIE PRODUKTU
+    async function handleAddProduct (e){
+        e.preventDefault();
+
+        await fetch("/add-product",{
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+              },
+            body:JSON.stringify({
+                nazwa: addNazwa.current.value,
+                cena: addCena.current.value,
+                opis: addOpis.current.value
+            })  
+        }).catch((error) => {
+            console.error('Błąd podczas dodawania produktu', error);
+        }).finally(() => {
+            getProdukty();
+            setIsAddShown(false);
+        });  
+    }
+
+    // UPDATE PRODUKTU
+    async function handleUpdateProduct(e){
+        e.preventDefault();
+
+        await fetch("/update-product",{
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+              },
+            body:JSON.stringify({
+                nazwa: updateNazwa.current.value,
+                cena: updateCena.current.value,
+                opis: updateOpis.current.value,
+                id: selectedProduct[0]
+            })  
+        }).catch((error) => {
+            console.error('Błąd podczas modyfikowania produktu', error);
+        }).finally(() => {
+            getProdukty();
+            setIsUpdateShown(false);
+        });  
+    }
+
+    useEffect(() => {    
         getProdukty();
     }, [])
 
-    async function handleSubmit(e) {
-        e.preventDefault()
 
-      }
-
+    // TABELKA WYŚWIETLAJĄCA PRODUKTY
     function Table({ data }) {
         let ref = useRef();
 
@@ -62,6 +121,7 @@ const Produkty = () => {
                     <th>Nazwa</th>
                     <th>Cena</th>
                     <th>Opis</th>
+                    <th></th>
                     <th></th>
                     </tr>
                 </thead>
@@ -78,34 +138,55 @@ const Produkty = () => {
                                 <td>
                                     <button onClick={() => handleDelete(item.produkt_ID)}>Usuń</button>
                                 </td>
+                                <td>
+                                    <button onClick={() => handleUpdateShow(item.produkt_ID, item.nazwa, item.cena, item.opis)}>Zmodyfikuj</button>
+                                </td>
                             </tr>
-                            ))
-                    )}
-                    
+                        ))
+                    )}                  
                 </tbody>
             </table>
-
-            {isShown && <Form />}
-
+            <button onClick={handleAddShow}>Dodaj produkt</button>
             </div>
         );
       }
 
-      function Form ({data}){
+      // FORMULARZ DODAWANIA
+      function AddForm (){
         return(
-            <form className="editForm" onSubmit={handleSubmit}>
-                <h2>Edytuj produkt</h2>
+            <form className="addForm" onSubmit={handleAddProduct}>
+                <h2>Dodaj produkt</h2>
 
                 <label>Nazwa</label>
-                <input type="text" required defaultValue={""} />
+                <input type="text" ref={addNazwa} required/>
 
                 <label>Cena</label>
-                <input type="text" required defaultValue={""}/>
+                <input type="text" ref={addCena} required/>
 
                 <label>Opis</label>
-                <input type="text" required defaultValue={""}/>
+                <input type="text" ref={addOpis} required/>
 
-                <button type="submit">Edytuj</button>
+                <button type="submit">Dodaj</button>
+            </form>
+        )
+      }
+
+      // FORMULARZ UPDATOWANIA
+      function UpdateForm (data){
+        return(
+            <form className="updateForm" onSubmit={handleUpdateProduct}>
+                <h2>Zmodyfikuj produkt</h2>
+
+                <label>Nazwa</label>
+                <input type="text" ref={updateNazwa} required defaultValue={selectedProduct[1]} />
+
+                <label>Cena</label>
+                <input type="text" ref={updateCena} required defaultValue={selectedProduct[2]}/>
+
+                <label>Opis</label>
+                <input type="text" ref={updateOpis} required defaultValue={selectedProduct[3]}/>
+
+                <button type="submit">Zmodyfikuj</button>
             </form>
         )
       }
@@ -113,7 +194,9 @@ const Produkty = () => {
     return ( 
         <div className="produkty">
             <h1>Produkty</h1>
-      <Table data={produkty} /> 
+      <Table data={produkty} />
+      {isAddShown && <AddForm />}
+      {isUpdateShown && <UpdateForm />}  
         </div>
      );
 }
