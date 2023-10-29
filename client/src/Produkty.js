@@ -53,7 +53,6 @@ const Produkty = () => {
     function handleUpdateShow (ID, nazwa, cena, opis){
         // setIsAddShown(current => !current); 
         setIsUpdateShown(true);
-        console.log(ID + nazwa + cena + opis)
         setSelectedProduct([ID, nazwa, cena, opis])
         console.log(selectedProduct)   
     }

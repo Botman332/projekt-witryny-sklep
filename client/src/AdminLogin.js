@@ -1,6 +1,8 @@
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { useAuth } from "./contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+
+let isAdmin = false
 
 const AdminLogin = () => {
 
@@ -10,14 +12,22 @@ const AdminLogin = () => {
     const [error, setError] = useState()
     const [loading, setLoading] = useState(false)
     const history = useHistory()
+    const { currentUser, logout } = useAuth()
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+
+    useEffect(() => {
+      async function handleLogout() {
+        await logout()  
+    }
+      handleLogout();
+  }, [])
+
+
     async function handleSubmit(e) {
         e.preventDefault()
-        
-        let isAdmin = false;
 
         try {
           setError("")
@@ -32,9 +42,9 @@ const AdminLogin = () => {
             return response.json();
         }).then(function (data) {
             if(data == "admin"){
-                isAdmin = true;
+                isAdmin = true
             }else if (data == "user"){
-                isAdmin = false;
+                isAdmin = false
             }
         })
           if (isAdmin == true){
@@ -74,5 +84,5 @@ const AdminLogin = () => {
     </div> 
     );
 }
- 
+
 export default AdminLogin;
