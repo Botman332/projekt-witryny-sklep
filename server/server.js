@@ -60,7 +60,6 @@ app.post("/admin-login", async (req, res) => {
 },  function (error, results, fields){
     if (error) throw error;
     res.json(results[0].rola)
-    console.log(results)
   })   
 })
 
@@ -78,6 +77,15 @@ app.post("/get-zamowienia", async (req, res) => {
 app.post("/get-produkty", async (req, res) => {
   connection.query({
   sql: 'SELECT * FROM produkty ORDER BY produkt_ID ASC',
+},  function (error, results, fields){
+  if (error) throw error;
+  res.json(results)
+})   
+})
+
+app.post("/get-klienci", async (req, res) => {
+  connection.query({
+  sql: 'SELECT * FROM klienci INNER JOIN users on klienci.uzytkownik_ID = users.user_id ORDER BY 1 ASC',
 },  function (error, results, fields){
   if (error) throw error;
   res.json(results)
@@ -112,6 +120,16 @@ app.put("/update-product", async (req, res) => {
   connection.query({
   sql: 'UPDATE produkty SET nazwa = ?, cena = ?, opis=? WHERE produkt_ID = ?',
   values: [req.body.nazwa, req.body.cena, req.body.opis, req.body.id]
+},  function (error, results, fields){
+  if (error) throw error;
+  res.send("succes")
+})   
+})
+
+app.put("/update-klient", async (req, res) => {
+  connection.query({
+  sql: 'UPDATE klienci SET imie= ?, nazwisko = ?, miejscowosc=?, kod_pocztowy=?, adres=? WHERE klient_ID = ?',
+  values: [req.body.imie, req.body.nazwisko, req.body.miejscowosc, req.body.kod_pocztowy, req.body.adres, req.body.id]
 },  function (error, results, fields){
   if (error) throw error;
   res.send("succes")

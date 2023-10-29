@@ -9,7 +9,7 @@ export default function PrivateRoute({ children }) {
   const [result, setResult] = useState(null);
 
   async function handleCheckAuthed(currentUser) {
-    let isAdmin = false; // Inicjalizacja zmiennej isAdmin na false
+    let isAdmin = false; 
   
     if (!currentUser) {
       return <Redirect to="/Zaloguj" />;
@@ -34,7 +34,7 @@ export default function PrivateRoute({ children }) {
       }
   
       if (isAdmin) {
-        return children; // Załóżmy, że zmienna children jest dostępna w tym zakresie
+        return "c"; 
       } else {
         return <Redirect to="/admin-login" />;
       }
@@ -51,8 +51,13 @@ export default function PrivateRoute({ children }) {
   }, [currentUser]);
 
 
+if (result == "c"){
+    return children;
+}
+else{
+    return result;
+}
 
-
-return result;
+// return result;
 
 }

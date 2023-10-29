@@ -14,6 +14,7 @@ import Admin from './Admin';
 import AdminLogin from './AdminLogin';
 import Zamowienia from './Zamowienia';
 import Produkty from './Produkty';
+import Klienci from './Klienci';
 
 
 function App() {
@@ -52,6 +53,9 @@ function App() {
           </PrivateAdminRoute>
           <PrivateAdminRoute path="/produkty">
               <Produkty/>
+          </PrivateAdminRoute>
+          <PrivateAdminRoute>
+            <Klienci/>
           </PrivateAdminRoute>
           <Route exact path="/">
             <Home/>
