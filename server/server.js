@@ -60,6 +60,7 @@ app.post("/admin-login", async (req, res) => {
 },  function (error, results, fields){
     if (error) throw error;
     res.json(results[0].rola)
+    console.log(results)
   })   
 })
 

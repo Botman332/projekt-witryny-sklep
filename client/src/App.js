@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import PrivateRoute from "./PrivateRoute"
+import PrivateAdminRoute from "./PrivateAdminRoute"
 import Navbar from './Navbar';
 import Home from './Home';
 import Zaloguj from './Zaloguj';
@@ -43,15 +44,15 @@ function App() {
     <AuthProvider>
       <Navbar/>
         <Switch>
-        <PrivateRoute path="/admin">
+        <PrivateAdminRoute path="/admin">
             <Admin/>
-          </PrivateRoute>
-          <PrivateRoute path="/zamowienia">
+          </PrivateAdminRoute>
+          <PrivateAdminRoute path="/zamowienia">
               <Zamowienia/>
-          </PrivateRoute>
-          <PrivateRoute path="/produkty">
+          </PrivateAdminRoute>
+          <PrivateAdminRoute path="/produkty">
               <Produkty/>
-          </PrivateRoute>
+          </PrivateAdminRoute>
           <Route exact path="/">
             <Home/>
           </Route>

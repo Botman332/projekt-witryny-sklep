@@ -1,3 +1,5 @@
+import React, { useRef, useState, useEffect } from "react"
+
 const Home = () => {
     return ( 
         <div className="homepage">
