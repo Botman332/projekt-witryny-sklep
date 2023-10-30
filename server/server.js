@@ -76,7 +76,7 @@ app.post("/get-zamowienia", async (req, res) => {
 // POBIERANIE PRODUKTÓW
 app.post("/get-produkty", async (req, res) => {
   connection.query({
-  sql: 'SELECT * FROM produkty ORDER BY produkt_ID ASC',
+  sql: 'SELECT produkty.produkt_ID, produkty.nazwa, produkty.opis, produkty.cena, kategorie.nazwa AS kategoria FROM produkty INNER JOIN kategorie ON produkty.kategoria_ID = kategorie.id ORDER BY produkt_ID ASC',
 },  function (error, results, fields){
   if (error) throw error;
   res.json(results)
@@ -107,8 +107,8 @@ app.delete("/delete-produkt", async (req, res) => {
 // WALIDACJA CENY W FORMULARZU
 app.post("/add-product", async (req, res) => {
   connection.query({
-  sql: 'INSERT INTO produkty (nazwa, opis, cena) VALUES (?, ?, ?)',
-  values: [req.body.nazwa, req.body.cena, req.body.opis]
+  sql: 'INSERT INTO produkty (nazwa, opis, cena, kategoria_ID) VALUES (?, ?, ?, ?)',
+  values: [req.body.nazwa, req.body.cena, req.body.opis, req.body.kategoria]
 },  function (error, results, fields){
   if (error) throw error;
   res.send("succes")
@@ -118,8 +118,8 @@ app.post("/add-product", async (req, res) => {
 // MODYFIKOWANIE PRODUKTU
 app.put("/update-product", async (req, res) => {
   connection.query({
-  sql: 'UPDATE produkty SET nazwa = ?, cena = ?, opis=? WHERE produkt_ID = ?',
-  values: [req.body.nazwa, req.body.cena, req.body.opis, req.body.id]
+  sql: 'UPDATE produkty SET nazwa = ?, cena = ?, opis=?, kategoria_ID=? WHERE produkt_ID = ?',
+  values: [req.body.nazwa, req.body.cena, req.body.opis, req.body.kategoria, req.body.id]
 },  function (error, results, fields){
   if (error) throw error;
   res.send("succes")
@@ -128,8 +128,51 @@ app.put("/update-product", async (req, res) => {
 
 app.put("/update-klient", async (req, res) => {
   connection.query({
-  sql: 'UPDATE klienci SET imie= ?, nazwisko = ?, miejscowosc=?, kod_pocztowy=?, adres=? WHERE klient_ID = ?',
-  values: [req.body.imie, req.body.nazwisko, req.body.miejscowosc, req.body.kod_pocztowy, req.body.adres, req.body.id]
+  sql: 'UPDATE klienci SET imie= ?, nazwisko = ?, miejscowosc=?, kod_pocztowy=?, adres=?, notatka=? WHERE klient_ID = ?',
+  values: [req.body.imie, req.body.nazwisko, req.body.miejscowosc, req.body.kod_pocztowy, req.body.adres, req.body.notatka, req.body.id]
+},  function (error, results, fields){
+  if (error) throw error;
+  res.send("succes")
+})   
+})
+
+//  POBIERANIE KATEGORII
+app.post("/get-kategorie", async (req, res) => {
+  connection.query({
+  sql: 'SELECT * FROM kategorie ORDER BY 1 ASC',
+},  function (error, results, fields){
+  if (error) throw error;
+  res.json(results)
+})   
+})
+
+//  USUWANIE KATEGORII
+app.delete("/delete-kategoria", async (req, res) => {
+  connection.query({
+  sql: 'DELETE FROM kategorie WHERE id=?',
+  values: [req.body.kategoriaID]
+},  function (error, results, fields){
+  if (error) throw error;
+  res.send("succes")
+})   
+})
+
+//  DODAWANIE KATEGORII
+app.post("/add-kategoria", async (req, res) => {
+  connection.query({
+  sql: 'INSERT INTO kategorie (nazwa) VALUES (?)',
+  values: [req.body.nazwa]
+},  function (error, results, fields){
+  if (error) throw error;
+  res.send("succes")
+})   
+})
+
+
+app.put("/update-kategoria", async (req, res) => {
+  connection.query({
+  sql: 'UPDATE kategorie SET nazwa = ? WHERE id = ?',
+  values: [req.body.nazwa, req.body.id]
 },  function (error, results, fields){
   if (error) throw error;
   res.send("succes")

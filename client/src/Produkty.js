@@ -10,9 +10,11 @@ const Produkty = () => {
     const addNazwa = useRef();
     const addCena = useRef();
     const addOpis = useRef();
+    const addKategoria = useRef();
     const updateNazwa = useRef();
     const updateCena = useRef();
     const updateOpis = useRef();
+    const updateKategoria = useRef();
 
     // POBIERANIE PRODUKTU
     async function getProdukty (){
@@ -69,7 +71,8 @@ const Produkty = () => {
             body:JSON.stringify({
                 nazwa: addNazwa.current.value,
                 cena: addCena.current.value,
-                opis: addOpis.current.value
+                opis: addOpis.current.value,
+                kategoria: addKategoria.current.value
             })  
         }).catch((error) => {
             console.error('Błąd podczas dodawania produktu', error);
@@ -92,6 +95,7 @@ const Produkty = () => {
                 nazwa: updateNazwa.current.value,
                 cena: updateCena.current.value,
                 opis: updateOpis.current.value,
+                kategoria: updateKategoria.current.value,
                 id: selectedProduct[0]
             })  
         }).catch((error) => {
@@ -120,6 +124,7 @@ const Produkty = () => {
                     <th>Nazwa</th>
                     <th>Cena</th>
                     <th>Opis</th>
+                    <th>Kategoria</th>
                     <th></th>
                     <th></th>
                     </tr>
@@ -134,6 +139,7 @@ const Produkty = () => {
                                 <td>{item.nazwa}</td>
                                 <td>{item.cena}</td>
                                 <td>{item.opis}</td>
+                                <td>{item.kategoria}</td>
                                 <td>
                                     <button onClick={() => handleDelete(item.produkt_ID)} className="tabButt">Usuń</button>
                                 </td>
@@ -157,18 +163,33 @@ const Produkty = () => {
                 <h2>Dodaj produkt</h2>
 
                 <label>Nazwa</label>
-                <br></br>
+                <br/>
                 <input type="text" ref={addNazwa} required/>
-                <br></br>
+                <br/>
+
                 <label>Cena</label>
-                <br></br>
+                <br/>
                 <input type="text" ref={addCena} required/>
-                <br></br>
+                <br/>
 
                 <label>Opis</label>
-                <br></br>
+                <br/>
                 <input type="text" ref={addOpis} required/>
-                <br></br>
+                <br/>
+                
+                
+                <label for="addKategoria">Kategoria</label>
+                <br/>
+                <select name="addKategoria" id="addKategoria" ref={addKategoria} required>
+                <option value="" selected disabled hidden>Wybierz kategorie</option>
+                <option value="1">Rock</option>
+                <option value="2">Pop</option>
+                <option value="3">Hip-Hop</option>
+                <option value="4">Muzyka klasyczna</option>
+                <option value="5">Jazz</option>
+                </select>
+                <br/>
+
                 <button type="submit" className="prodaddButton">Dodaj</button>
             </form>
         )
@@ -181,17 +202,29 @@ const Produkty = () => {
                 <h2>Zmodyfikuj produkt</h2>
 
                 <label>Nazwa</label>
-                <br></br>
+                <br/>
                 <input type="text" ref={updateNazwa} required defaultValue={selectedProduct[1]} />
-                <br></br>
+                <br/>
                 <label>Cena</label>
-                <br></br>
+                <br/>
                 <input type="text" ref={updateCena} required defaultValue={selectedProduct[2]}/>
-                <br></br>
+                <br/>
                 <label>Opis</label>
-                <br></br>
+                <br/>
                 <input type="text" ref={updateOpis} required defaultValue={selectedProduct[3]}/>
-                <br></br>
+                <br/>
+
+                <label for="updateKategoria">Kategoria</label>
+                <br/>
+                <select name="updateKategoria" id="updateKategoria" ref={updateKategoria}>
+                <option value="" selected disabled hidden>Wybierz kategorie</option>
+                <option value="1">Rock</option>
+                <option value="2">Pop</option>
+                <option value="3">Hip-Hop</option>
+                <option value="4">Muzyka klasyczna</option>
+                <option value="5">Jazz</option>
+                </select>
+                <br/>
                 <button type="submit" className="produpdateButton">Zmodyfikuj</button>
             </form>
         )
