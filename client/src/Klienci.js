@@ -6,9 +6,7 @@ const Klienci = () => {
     let [selectedKlient, setSelectedKlient] = useState ([])
     const [isUpdateShown, setIsUpdateShown] = useState(false);
     const [loading, setLoading] = useState(false);
-    // const addNazwa = useRef();
-    // const addCena = useRef();
-    // const addOpis = useRef();
+
     const updateID_klienta = useRef();
     const updateID_użytkownika = useRef();
     const updateimie = useRef();
@@ -16,6 +14,7 @@ const Klienci = () => {
     const updatemiejscowosc = useRef();
     const updatekod_pocztowy = useRef();
     const updateadres = useRef();
+    const updatenotatka = useRef();
 
     // POBIERANIE KLIENTÓW 
     async function getProdukty (){
@@ -48,10 +47,10 @@ const Klienci = () => {
     //   };
 
 
-    function handleUpdateShow (ID_klienta, ID_użytkownika, imie, nazwisko, miejscowosc, kod_pocztowy, adres){
+    function handleUpdateShow (ID_klienta, ID_użytkownika, imie, nazwisko, miejscowosc, kod_pocztowy, adres, notatka){
         // setIsAddShown(current => !current); 
         setIsUpdateShown(true);
-        setSelectedKlient([ID_klienta, ID_użytkownika, imie, nazwisko, miejscowosc, kod_pocztowy, adres]) 
+        setSelectedKlient([ID_klienta, ID_użytkownika, imie, nazwisko, miejscowosc, kod_pocztowy, adres, notatka]) 
     }
 
 
@@ -70,6 +69,7 @@ const Klienci = () => {
                 miejscowosc: updatemiejscowosc.current.value,
                 kod_pocztowy: updatekod_pocztowy.current.value,
                 adres: updateadres.current.value,
+                notatka: updatenotatka.current.value,
                 id: selectedKlient[0]
             })  
         }).catch((error) => {
@@ -102,7 +102,7 @@ const Klienci = () => {
                     <th>Kod pocztowy</th>
                     <th>Adres</th>
                     <th>Email</th>
-                    {/* <th></th> */}
+                    <th>Notatka</th>
                     <th></th>
                     </tr>
                 </thead>
@@ -120,6 +120,7 @@ const Klienci = () => {
                                 <td>{item.kod_pocztowy}</td>
                                 <td>{item.adres}</td>
                                 <td>{item.email}</td>
+                                <td>{item.notatka}</td>
                                 {/* <td>
                                     <button onClick={() => handleDelete(item.produkt_ID)} className="tabButt">Usuń</button>
                                 </td> */}
@@ -132,6 +133,7 @@ const Klienci = () => {
                                         item.miejscowosc,
                                         item.kod_pocztowy,
                                         item.adres,
+                                        item.notatka
                                         )} className="tabButt">Zmodyfikuj</button>
                                 </td>
                             </tr>
@@ -180,6 +182,10 @@ const Klienci = () => {
                 <br></br>
                 <input type="text" ref={updateadres} required defaultValue={selectedKlient[6]}/>
                 <br></br>
+                <label>Notatka</label>
+                <br></br>
+                <input type="text" ref={updatenotatka} required defaultValue={selectedKlient[7]}/>
+                <br></br>
                 <button type="submit" className="produpdateButton">Zmodyfikuj</button>
             </form>
         )
@@ -187,7 +193,7 @@ const Klienci = () => {
 
     return ( 
         <div className="klienci">
-            <h1>Klienic</h1>
+            <h1>Klienci</h1>
       <Table data={klienci} className="panTab" />
       {isUpdateShown && <UpdateForm />}  
         </div>

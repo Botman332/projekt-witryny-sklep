@@ -15,6 +15,7 @@ import AdminLogin from './AdminLogin';
 import Zamowienia from './Zamowienia';
 import Produkty from './Produkty';
 import Klienci from './Klienci';
+import Kategorie from './Kategorie';
 
 
 function App() {
@@ -54,8 +55,11 @@ function App() {
           <PrivateAdminRoute path="/produkty">
               <Produkty/>
           </PrivateAdminRoute>
-          <PrivateAdminRoute>
+          <PrivateAdminRoute path="/klienci">
             <Klienci/>
+          </PrivateAdminRoute>
+          <PrivateAdminRoute path="/kategorie">
+            <Kategorie/>
           </PrivateAdminRoute>
           <Route exact path="/">
             <Home/>
