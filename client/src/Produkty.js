@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react"
-
+import { Link, useHistory } from "react-router-dom"
 const Produkty = () => {
     
     let [produkty, setProdukty] = useState([])
@@ -232,6 +232,8 @@ const Produkty = () => {
 
     return ( 
         <div className="produkty">
+                    <Link to="/Admin" className='BackButton'>Wróć</Link> 
+        <br></br>
             <h1>Produkty</h1>
       <Table data={produkty} className="panTab" />
       {isAddShown && <AddForm />}
