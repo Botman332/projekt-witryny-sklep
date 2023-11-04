@@ -257,6 +257,33 @@ h1 {
 .zamowienia{
     font-family: "Quicksand";
 }
+.klienci {
+    font-family: "Quicksand";
+}
+.platnosci {
+    font-family: "Quicksand";
+}
+.BackButton {
+    float: right;
+    margin-right: 2em;
+    background:rgb(57, 151, 57);
+    color:white;
+    border-bottom: 2px black solid;
+    border-top:none;
+    border-left:none;
+    border-right:none;
+    border-radius: 2%;
+    width:8em;
+    height:2em;
+    font-size:15px;
+    font-weight:700;
+    margin-top:0.5em;
+    text-decoration: none;
+    text-align: center;
+    display:flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
 .prodaddForm {
     font-size:17px;
     font-family: "Quicksand";
@@ -312,6 +339,15 @@ h1 {
 }
 /* PRODUKTY */
 .panTab {
+    background: none;
+    width: 7em;
+    font-family: Arial, Helvetica, sans-serif;
+    color:white;
+    border:none;
+    font-size:17px;
+    font-family: "Quicksand";
+}
+.platTab {
     background: none;
     width: 7em;
     font-family: Arial, Helvetica, sans-serif;

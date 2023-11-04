@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react"
+import { Link, useHistory } from "react-router-dom"
 
 const Klienci = () => {
     
@@ -54,7 +55,7 @@ const Klienci = () => {
     }
 
 
-    // UPDATE PRODUKTU
+    // UPDATE KLIENTA
     async function handleUpdateProduct(e){
         e.preventDefault();
 
@@ -193,9 +194,11 @@ const Klienci = () => {
 
     return ( 
         <div className="klienci">
+        <Link to="/Admin" className='BackButton'>Wróć</Link> 
+        <br></br>
             <h1>Klienci</h1>
       <Table data={klienci} className="panTab" />
-      {isUpdateShown && <UpdateForm />}  
+      {isUpdateShown && <UpdateForm />}
         </div>
      );
 }
