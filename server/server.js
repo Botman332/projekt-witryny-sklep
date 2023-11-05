@@ -83,9 +83,20 @@ app.post("/get-produkty", async (req, res) => {
 })   
 })
 
+// POBIERANIE KLIENTÓW
 app.post("/get-klienci", async (req, res) => {
   connection.query({
   sql: 'SELECT * FROM klienci INNER JOIN users on klienci.uzytkownik_ID = users.user_id ORDER BY 1 ASC',
+},  function (error, results, fields){
+  if (error) throw error;
+  res.json(results)
+})    
+})
+
+// POBIERANIE PŁATNOŚCI
+app.post("/get-platnosci", async (req, res) => {
+  connection.query({
+  sql: 'SELECT platnosci.platnosc_ID, platnosci.zamowienie_ID, statusy.nazwa AS status, platnosci.sposob, platnosci.cena, platnosci.data FROM platnosci INNER JOIN statusy ON platnosci.status_ID = statusy.status_ID ORDER BY 3 ASC',
 },  function (error, results, fields){
   if (error) throw error;
   res.json(results)
@@ -103,6 +114,18 @@ app.delete("/delete-produkt", async (req, res) => {
 })   
 })
 
+
+// USUWANIE ZAMÓWIENIA
+app.delete("/delete-zamowienie", async (req, res) => {
+  connection.query({
+  sql: 'DELETE FROM zamowienie WHERE zamowienie_ID=?',
+  values: [req.body.zamowienieId]
+},  function (error, results, fields){
+  if (error) throw error;
+  res.send("succes")
+})   
+}) 
+
 // DODAWANIE PRODUKTU
 // WALIDACJA CENY W FORMULARZU
 app.post("/add-product", async (req, res) => {
@@ -115,11 +138,56 @@ app.post("/add-product", async (req, res) => {
 })   
 })
 
+// DODAWANIE PŁATNOŚCI
+// WALIDACJA CENY W FORMULARZU
+app.post("/add-platnosc", async (req, res) => {
+  connection.query({
+  sql: 'INSERT INTO platnosci (zamowienie_ID, status_ID, sposob, cena, data) VALUES (?, ?, ?, ?, ?)',
+  values: [req.body.ID_zamowienia, req.body.ID_statusu, req.body.sposob, req.body.cena, req.body.data]
+},  function (error, results, fields){
+  if (error) throw error;
+  res.send("succes")
+})   
+})
+
+// DODAWANIE ZAMÓWIENIA
+// WALIDACJA CENY W FORMULARZU
+app.post("/add-zamowienie", async (req, res) => {
+  connection.query({
+  sql: 'INSERT INTO zamowienie (klient_ID, data) VALUES (?, ?)',
+  values: [req.body.ID_klienta, req.body.data]
+},  function (error, results, fields){
+  if (error) throw error;
+  res.send("succes")
+})   
+})
+
 // MODYFIKOWANIE PRODUKTU
 app.put("/update-product", async (req, res) => {
   connection.query({
   sql: 'UPDATE produkty SET nazwa = ?, cena = ?, opis=?, kategoria_ID=? WHERE produkt_ID = ?',
   values: [req.body.nazwa, req.body.cena, req.body.opis, req.body.kategoria, req.body.id]
+},  function (error, results, fields){
+  if (error) throw error;
+  res.send("succes")
+})   
+})
+// MODYFIKOWANIE PŁATNOŚCI
+app.put("/update-platnosc", async (req, res) => {
+  connection.query({
+  sql: 'UPDATE platnosci SET zamowienie_ID = ?, status_ID = ?, sposob=?, cena=?, data=? WHERE platnosc_ID = ?',
+  values: [req.body.ID_zamowienia, req.body.ID_statusu, req.body.sposob, req.body.cena, req.body.data, req.body.id]
+},  function (error, results, fields){
+  if (error) throw error;
+  res.send("succes")
+})   
+})
+
+// MODYFIKOWANIE ZAMÓWIENIA
+app.put("/update-zamowienie", async (req, res) => {
+  connection.query({
+  sql: 'UPDATE zamowienie SET klient_ID = ?, data = ? WHERE zamowienie_ID = ?',
+  values: [req.body.ID_klienta, req.body.data, req.body.id]
 },  function (error, results, fields){
   if (error) throw error;
   res.send("succes")
@@ -167,6 +235,9 @@ app.post("/add-kategoria", async (req, res) => {
   res.send("succes")
 })   
 })
+
+
+
 
 
 app.put("/update-kategoria", async (req, res) => {

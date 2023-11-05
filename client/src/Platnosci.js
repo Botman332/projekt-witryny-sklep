@@ -163,10 +163,15 @@ useEffect(() => {
             <label>ID Zamówienia</label>
             <br/>
             <input type="text" ref={addIdZamowienia} required/>
+
             <br/>
-            <label>Status</label>
-            <br/>
-            <input type="text" ref={addIdStatusu} required/>
+                <label for="addIdStatusu">Status</label>
+                <br/>
+                <select name="addIdStatusu" id="addIdStatusu" ref={addIdStatusu} required>
+                <option value="" selected disabled hidden>Wybierz status płatności</option>
+                <option value="1">Oczekuje na płatność</option>
+                <option value="2">Opłacone</option>
+                </select>
             <br/>
             <label>Sposób Płatności</label>
             <br/>
@@ -195,10 +200,15 @@ useEffect(() => {
                     <label>ID Zamówienia</label>
                     <br/>
                     <input type="text" ref={updateIdZamowienia} required defaultValue={selectedPlatnosci[1]} />
-                    <br/>
-                    <label>Status</label>
-                    <br/>
-                    <input type="text" ref={updateIdStatusu} required defaultValue={selectedPlatnosci[2]} />
+                <br/>
+                <label for="updateIdStatusu">Status</label>
+                <br/>
+                <select name="updateIdStatusu" id="updateIdStatusu" ref={updateIdStatusu} required>
+                <option value="" selected disabled hidden>Wybierz status płatności</option>
+                <option value="1">Oczekuje na płatność</option>
+                <option value="2">Opłacone</option>
+                </select>
+
                     <br/>
                     <label>Sposób Płatności</label>
                     <br/>
