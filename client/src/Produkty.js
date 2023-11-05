@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react"
 import { Link, useHistory } from "react-router-dom"
 const Produkty = () => {
     
+    const path = process.env.REACT_APP_PATH
     let [produkty, setProdukty] = useState([])
     let [selectedProduct, setSelectedProduct] = useState ([])
     const [isAddShown, setIsAddShown] = useState(false);
@@ -18,7 +19,7 @@ const Produkty = () => {
 
     // POBIERANIE PRODUKTU
     async function getProdukty (){
-        await fetch("/get-produkty", {
+        await fetch(`${path}/get-produkty`, {
             method: "POST"
         }).then((response) =>{
             return response.json();
@@ -30,7 +31,7 @@ const Produkty = () => {
     // USUWANIE PRODUKTU
     async function handleDelete (productId) {     
         setLoading(true); 
-        await fetch("/delete-produkt", {
+        await fetch(`${path}/delete-produkt`, {
             method: 'DELETE', // Przyjmij odpowiednią metodę HTTP
             headers: {
                 "Content-Type": "application/json",
@@ -63,7 +64,7 @@ const Produkty = () => {
     async function handleAddProduct (e){
         e.preventDefault();
 
-        await fetch("/add-product",{
+        await fetch(`${path}/add-product`,{
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -86,7 +87,7 @@ const Produkty = () => {
     async function handleUpdateProduct(e){
         e.preventDefault();
 
-        await fetch("/update-product",{
+        await fetch(`${path}/update-product`,{
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",

@@ -3,11 +3,13 @@ const path = require('path')
 const app = express()
 const mysql = require('mysql');
 const bcrypt = require('bcrypt'); 
+const cors = require('cors');
 require('dotenv').config();
 
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })) ;
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 app.get("/api", (req, res) => {
     res.json({ "users": ["userOne", "UserTwo", "UserThree"] })
@@ -178,7 +180,36 @@ app.put("/update-kategoria", async (req, res) => {
   res.send("succes")
 })   
 })
-  
+
+app.post("/get-platnosci", async (req, res) => {
+  connection.query({
+  sql: 'SELECT platnosci.platnosc_ID, platnosci.zamowienie_ID, statusy.nazwa, platnosci.sposob, platnosci.cena, platnosci.data FROM platnosci INNER JOIN statusy ON platnosci.status_ID = statusy.status_ID ORDER BY 1 ASC',
+},  function (error, results, fields){
+  if (error) throw error;
+  res.json(results)
+})   
+}) 
+
+app.post("/add-platnosc", async (req, res) => {
+  connection.query({
+  sql: 'INSERT INTO platnosci (zamowienie_ID, status_ID, sposob, cena, data) VALUES (?, ?, ?, ?, ?)',
+  values: [req.body.ID_zamowienia, req.body.ID_statusu, req.body.sposob, req.body.cena, req.body.data]
+},  function (error, results, fields){
+  if (error) throw error;
+  res.send("succes")
+})   
+})
+
+app.put("/update-platnosc", async (req, res) => {
+  connection.query({
+  sql: 'UPDATE platnosci SET zamowienie_ID=?, status_ID=?, sposob=?, cena=?, data=? WHERE platnosc_ID=?',
+  values: [req.body.ID_zamowienia, req.body.ID_statusu, req.body.sposob, req.body.cena, req.body.data, req.body.id]
+},  function (error, results, fields){
+  if (error) throw error;
+  res.send("succes")
+})   
+})
+
 // connection.end();
 
 

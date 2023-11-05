@@ -289,6 +289,12 @@ h1 {
     font-family: "Quicksand";
     margin-left: 1em;
 }
+
+.prodaddForm input {
+    font-family: Arial,Helvetica,sans-serif;
+    color:black;
+}
+
 .prodaddButton {
     margin-top:1em;
     width: 6em;
@@ -372,4 +378,11 @@ h1 {
     background-color:rgb(21, 20, 20);
     display: flex;
     margin-top: 25em;
+}
+
+#addIdStatusu {
+    font-family: "Quicksand";
+}
+#updateIdStatusu {
+    font-family: "Quicksand";
 }

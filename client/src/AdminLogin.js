@@ -6,6 +6,7 @@ let isAdmin = false
 
 const AdminLogin = () => {
 
+    const path = process.env.REACT_APP_PATH
     const emailRef = useRef()
     const passwordRef = useRef()
     const { login } = useAuth()
@@ -32,7 +33,7 @@ const AdminLogin = () => {
         try {
           setError("")
           setLoading(true)
-          await fetch("/admin-login", {
+          await fetch(`${path}/admin-login`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
