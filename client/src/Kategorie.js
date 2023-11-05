@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react"
 
 const Kategorie = () => {
 
+    const path = process.env.REACT_APP_PATH
     let [kategorie, setKategorie] = useState([])
     let [selectedKategoria, setSelectedKategoria] = useState ([])
     const [isAddShown, setIsAddShown] = useState(false);
@@ -12,7 +13,7 @@ const Kategorie = () => {
 
     // POBIERANIE KATEGORII
     async function getKategorie (){
-        await fetch("/get-kategorie", {
+        await fetch(`${path}/get-kategorie`, {
             method: "POST"
         }).then((response) =>{
             return response.json();
@@ -24,7 +25,7 @@ const Kategorie = () => {
     // USUWANIE KATEGORII
     async function handleDelete (kategoriaID) {     
         setLoading(true); 
-        await fetch("/delete-kategoria", {
+        await fetch(`${path}/delete-kategoria`, {
             method: 'DELETE', 
             headers: {
                 "Content-Type": "application/json",
@@ -56,7 +57,7 @@ const Kategorie = () => {
     async function handleAddKategoria (e){
         e.preventDefault();
 
-        await fetch("/add-kategoria",{
+        await fetch(`${path}/add-kategoria`,{
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -76,7 +77,7 @@ const Kategorie = () => {
     async function handleUpdateKategoria(e){
         e.preventDefault();
 
-        await fetch("/update-kategoria",{
+        await fetch(`${path}/update-kategoria`,{
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",

@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom"
 
 const Klienci = () => {
     
+    const path = process.env.REACT_APP_PATH
     let [klienci, setKlienci] = useState([])
     let [selectedKlient, setSelectedKlient] = useState ([])
     const [isUpdateShown, setIsUpdateShown] = useState(false);
@@ -19,7 +20,7 @@ const Klienci = () => {
 
     // POBIERANIE KLIENTÓW 
     async function getProdukty (){
-        await fetch("/get-klienci", {
+        await fetch(`${path}/get-klienci`, {
             method: "POST"
         }).then((response) =>{
             return response.json();
@@ -27,25 +28,6 @@ const Klienci = () => {
             setKlienci(data);
         })
     }
-
-    // USUWANIE KLIENTA
-    // async function handleDelete (productId) {     
-    //     setLoading(true); 
-    //     await fetch("/delete-produkt", {
-    //         method: 'DELETE', // Przyjmij odpowiednią metodę HTTP
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //           },
-    //         body: JSON.stringify({productId: productId})     
-    //     })
-    //     .catch((error) => {
-    //         console.error('Błąd podczas usuwania produktu', error);
-    //     })
-    //     .finally(() => {
-    //         setLoading(false);
-    //         getProdukty();
-    //     });   
-    //   };
 
 
     function handleUpdateShow (ID_klienta, ID_użytkownika, imie, nazwisko, miejscowosc, kod_pocztowy, adres, notatka){
@@ -59,7 +41,7 @@ const Klienci = () => {
     async function handleUpdateProduct(e){
         e.preventDefault();
 
-        await fetch("/update-klient",{
+        await fetch(`${path}/update-klient`,{
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",

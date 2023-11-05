@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom"
 
 export default function Rejestracja() {
     
+  const path = process.env.REACT_APP_PATH
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
@@ -28,7 +29,7 @@ export default function Rejestracja() {
           setError("")
           setLoading(true)
           await signup(emailRef.current.value, passwordRef.current.value)
-          await fetch("/register-user", {
+          await fetch(`${path}register-user`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

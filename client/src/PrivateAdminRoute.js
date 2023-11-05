@@ -5,7 +5,7 @@ import { useAuth } from "./contexts/AuthContext";
 export default function PrivateRoute({ children }) {
 
   const { currentUser } = useAuth();
-
+  const path = process.env.REACT_APP_PATH
   const [result, setResult] = useState(null);
 
   async function handleCheckAuthed(currentUser) {
@@ -15,7 +15,7 @@ export default function PrivateRoute({ children }) {
       return <Redirect to="/Zaloguj" />;
     } else {
       try {
-        const response = await fetch("/admin-login", {
+        const response = await fetch(`${path}/admin-login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
