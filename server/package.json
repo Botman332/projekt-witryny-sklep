@@ -29,6 +29,6 @@
     "nodemon": "^3.0.1"
   },
   "engines": {
-    "node": "your-node-version"
+    "node": "18.x"
   }
 }
