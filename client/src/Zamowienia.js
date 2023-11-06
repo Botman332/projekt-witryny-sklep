@@ -5,6 +5,7 @@ import { Link, useHistory } from "react-router-dom"
 
 const Zamowienia = () => {
 
+    const path = process.env.REACT_APP_PATH
     let [zamowienia, setZamowienia] = useState([])
     let [selectedZamowienie, setSelectedZamowienie] = useState ([])
     const [isAddShown, setIsAddShown] = useState(false);
@@ -17,7 +18,7 @@ const Zamowienia = () => {
 
     // POBIERANIE ZAMÓWIENIA
     async function getZamowienia (){
-        await fetch("/get-zamowienia", {
+        await fetch(`${path}/get-zamowienia`, {
             method: "POST"
         }).then((response) =>{
             return response.json();
@@ -28,7 +29,7 @@ const Zamowienia = () => {
     // USUWANIE ZAMÓWIENIA
     async function handleDelete (zamowienieId) {     
         setLoading(true); 
-        await fetch("/delete-zamowienie", {
+        await fetch(`${path}/delete-zamowienie`, {
             method: 'DELETE', // Przyjmij odpowiednią metodę HTTP
             headers: {
                 "Content-Type": "application/json",
@@ -60,7 +61,7 @@ function handleUpdateShow (ID, ID_klienta, data){
 async function handleAddZamowienie (e){
     e.preventDefault();
 
-    await fetch("/add-zamowienie",{
+    await fetch(`$path}/add-zamowienie`,{
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -81,7 +82,7 @@ async function handleAddZamowienie (e){
  async function handleUpdateZamowienie(e){
     e.preventDefault();
 
-    await fetch("/update-zamowienie",{
+    await fetch(`${path}/update-zamowienie`,{
         method: 'PUT',
         headers: {
             "Content-Type": "application/json",
