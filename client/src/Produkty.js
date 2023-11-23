@@ -114,7 +114,6 @@ const Produkty = () => {
 
     // TABELKA WYŚWIETLAJĄCA PRODUKTY
     function Table({ data }) {
-        let ref = useRef();
 
         return (
             <div className="tabelka">
