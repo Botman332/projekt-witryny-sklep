@@ -98,10 +98,53 @@ app.post("/get-produkty", async (req, res) => {
   );
 });
 
+// POBIERANIE JEDNEGO PRODUKTU DO STRONY PRODUKTU
+app.post("/get-produkt", async (req, res) => {
+  connection.query(
+    {
+      sql: "SELECT produkty.produkt_ID, produkty.nazwa, produkty.opis, produkty.cena, produkty.obraz, kategorie.nazwa AS kategoria FROM produkty INNER JOIN kategorie ON produkty.kategoria_ID = kategorie.id WHERE produkty.produkt_ID=?",
+      values: [req.body.productId],
+    },
+
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+    }
+  );
+});
+
 app.post("/get-klienci", async (req, res) => {
   connection.query(
     {
       sql: "SELECT * FROM klienci INNER JOIN users on klienci.uzytkownik_ID = users.user_id ORDER BY 1 ASC",
+    },
+    function (error, results, fields) {
+      if (error) throw error;
+      res.json(results);
+    }
+  );
+});
+
+//POBIERANIE JEDNEGO KLIENTA
+app.post("/get-klient", async (req, res) => {
+  connection.query(
+    {
+      sql: "SELECT * FROM klienci INNER JOIN users on klienci.uzytkownik_ID = users.user_id WHERE klienci.klient_ID= ?",
+      values: [req.body.klientID],
+    },
+    function (error, results, fields) {
+      if (error) throw error;
+      res.json(results);
+    }
+  );
+});
+
+app.post("/get-current-db-user", async (req, res) => {
+  connection.query(
+    {
+      sql: "SELECT * FROM klienci INNER JOIN users on klienci.uzytkownik_ID = users.user_id WHERE users.email=?",
+      values: [req.body.email],
     },
     function (error, results, fields) {
       if (error) throw error;
@@ -177,6 +220,39 @@ app.put("/update-klient", async (req, res) => {
         req.body.notatka,
         req.body.id,
       ],
+    },
+    function (error, results, fields) {
+      if (error) throw error;
+      res.send("succes");
+    }
+  );
+});
+
+app.put("/update-klient-dane", async (req, res) => {
+  connection.query(
+    {
+      sql: "UPDATE klienci SET imie= ?, nazwisko = ?, miejscowosc=?, kod_pocztowy=?, adres=? WHERE klient_ID = ?",
+      values: [
+        req.body.imie,
+        req.body.nazwisko,
+        req.body.miejscowosc,
+        req.body.kod_pocztowy,
+        req.body.adres,
+        req.body.id,
+      ],
+    },
+    function (error, results, fields) {
+      if (error) throw error;
+      res.send("succes");
+    }
+  );
+});
+
+app.put("/update-user", async (req, res) => {
+  connection.query(
+    {
+      sql: "UPDATE users SET email =? WHERE user_id = (SELECT uzytkownik_ID FROM klienci WHERE klient_ID = ?)",
+      values: [req.body.email, req.body.klientID],
     },
     function (error, results, fields) {
       if (error) throw error;
