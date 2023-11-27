@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom"
 
 const Platnosci = () => {
 
+    const path = process.env.REACT_APP_PATH
     let [platnosci, setPlatnosci] = useState([])
     let [selectedPlatnosci, setSelectedPlatnosci] = useState ([])
     const [isAddShown, setIsAddShown] = useState(false);
@@ -22,12 +23,13 @@ const Platnosci = () => {
 
     // POBIERANIE PŁATNOŚCI
     async function getPlatnosci (){
-        await fetch("/get-platnosci", {
+        await fetch(`${path}/get-platnosci`, {
             method: "POST"
         }).then((response) =>{
             return response.json();
         }).then(function (data) {
             setPlatnosci(data);
+            
         })
     }
 
@@ -40,15 +42,16 @@ const Platnosci = () => {
 
 function handleUpdateShow (ID, ID_zamowienia, ID_statusu, sposob, cena, data){
     // setIsAddShown(current => !current); 
+    console.log(selectedPlatnosci[5])  
     setIsUpdateShown(true);
     setSelectedPlatnosci([ID, ID_zamowienia, ID_statusu, sposob, cena, data])
-    console.log(selectedPlatnosci)   
+     
 }
 //DODAWANIE PŁATNOŚCI
 async function handleAddPlatnosc (e){
     e.preventDefault();
 
-    await fetch("/add-platnosc",{
+    await fetch(`${path}/add-platnosc`,{
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -72,7 +75,7 @@ async function handleAddPlatnosc (e){
  async function handleUpdatePlatnosc(e){
     e.preventDefault();
 
-    await fetch("/update-platnosc",{
+    await fetch(`${path}/update-platnosc`,{
         method: 'PUT',
         headers: {
             "Content-Type": "application/json",
@@ -108,6 +111,15 @@ useEffect(() => {
         return formattedDate;
       }
 
+      function convertDateToIso(inputDate) {
+        const date = new Date(inputDate); 
+        const day = String(date.getDate()).padStart(2, '0'); 
+        const month = String(date.getMonth() + 1).padStart(2, '0'); 
+        const year = String(date.getFullYear()); 
+      
+        const formattedDate = `${year}-${month}-${day}`;      
+        return formattedDate;
+      }
 
       useEffect(() => {    
         getPlatnosci();
@@ -136,12 +148,12 @@ useEffect(() => {
                             <tr key={index}>
                                 <td>{item.platnosc_ID}</td>
                                 <td>{item.zamowienie_ID}</td>
-                                <td>{item.status}</td>
+                                <td>{item.nazwa}</td>
                                 <td>{item.sposob}</td>
                                 <td>{item.cena}</td>
                                 <td>{convertDate(item.data)}</td>
                                 <td>
-                                    <button onClick={() => handleUpdateShow(item.platnosc_ID, item.zamowienie_ID, item.status,  item.sposob,  item.cena, convertDate(item.data))} className="tabButt">Zmodyfikuj</button>
+                                    <button onClick={() => handleUpdateShow(item.platnosc_ID, item.zamowienie_ID, item.nazwa,  item.sposob,  item.cena, convertDate(item.data))} className="tabButt">Zmodyfikuj</button>
                                 </td>
                             </tr>
                             ))
@@ -165,7 +177,7 @@ useEffect(() => {
             <input type="text" ref={addIdZamowienia} required/>
 
             <br/>
-                <label for="addIdStatusu">Status</label>
+            <label for="addIdStatusu">Status</label>
                 <br/>
                 <select name="addIdStatusu" id="addIdStatusu" ref={addIdStatusu} required>
                 <option value="" selected disabled hidden>Wybierz status płatności</option>
@@ -183,7 +195,7 @@ useEffect(() => {
             <br/>
             <label>Data</label>
             <br/>
-            <input type="text" ref={addData} required/>
+            <input type="date" ref={addData} required/>
             <br/>
 
             <button type="submit" className="prodaddButton">Dodaj</button>
@@ -200,15 +212,14 @@ useEffect(() => {
                     <label>ID Zamówienia</label>
                     <br/>
                     <input type="text" ref={updateIdZamowienia} required defaultValue={selectedPlatnosci[1]} />
-                <br/>
-                <label for="updateIdStatusu">Status</label>
-                <br/>
-                <select name="updateIdStatusu" id="updateIdStatusu" ref={updateIdStatusu} required>
-                <option value="" selected disabled hidden>Wybierz status płatności</option>
-                <option value="1">Oczekuje na płatność</option>
-                <option value="2">Opłacone</option>
-                </select>
-
+                    <br/>
+                    <label for="updateIdStatusu">Status</label>
+                    <br/>
+                    <select name="updateIdStatusu" id="updateIdStatusu" ref={updateIdStatusu} required>
+                        <option value="" selected disabled hidden>Wybierz status płatności</option>
+                        <option value="1">Oczekuje na płatność</option>
+                        <option value="2">Opłacone</option>
+                    </select>
                     <br/>
                     <label>Sposób Płatności</label>
                     <br/>
@@ -220,7 +231,7 @@ useEffect(() => {
                     <br/>
                     <label>Data</label>
                     <br/>
-                    <input type="text" ref={updateData} required defaultValue={selectedPlatnosci[5]}/>
+                    <input type="date" ref={updateData} required defaultValue={selectedPlatnosci[5]}/>
                     <br/>
                     <button type="submit" className="produpdateButton">Zmodyfikuj</button>
                 </form>

@@ -1,385 +1,452 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jaldi&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jaldi&display=swap");
 
 body {
-    margin:0;
+  margin: 0;
 }
 h1 {
-    text-align: center;
+  text-align: center;
+}
+
+.homepage h1 {
+  font-family: "Quicksand";
+}
+
+.home-main {
+  display: flex;
+}
+
+.parametry {
+  width: 10%;
+}
+
+/* STYLE PRODUKTÓW */
+.produkty {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 1%;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-product {
+  /* display: flex; */
+  flex: 1 0 26%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.single-product img {
+  width: 400px;
+  height: auto;
 }
 
 /* NAVBAR STYLES */
 .Logo {
-    height:120px;
-    width:120px;
-    align-items: center;
-    margin-left:1em;
+  width:200px;
+  align-items: center;
+  margin-left: 1em;
+}
+
+.Koszyk {
+  height: 70px;
+  width: 70px;
+  color: white;
+  float:right;
+  margin-right:1em;
 }
 #LogNav {
-    color:white;
+  color: white;
 }
 #AdminNav {
-    color:white;
+  color: white;
 }
+#KlientNav {
+    color: white;
+  }
 .LogOutNav {
-    background: none;
-    width: 7em;
-    font-family: Arial, Helvetica, sans-serif;
-    color:white;
-    border:none;
-    font-size:17px;
-    font-family: "Quicksand";
+  background: none;
+  width: 7em;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  border: none;
+  font-size: 17px;
+  font-family: "Quicksand";
 }
 .navTxt {
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: row;
-    align-items:baseline;
+  margin-left: 70em;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  align-items: baseline;
 }
-.navbar{
-    background-color:rgb(21, 20, 20);
+.navbar {
+  background-color: rgb(21, 20, 20);
+  display: flex;
+
 }
 
 .navbar a {
-    text-decoration: none;
-    color: rgb(73, 70, 70);
-    font-family: "Quicksand";
-    margin: 0 0.5em 0.5em 0;
-    padding: 2px;
-    font-size:17px;
-    text-decoration: solid;
+  text-decoration: none;
+  color: rgb(73, 70, 70);
+  font-family: "Quicksand";
+  margin: 0 0.5em 0.5em 0;
+  padding: 2px;
+  font-size: 17px;
+  text-decoration: solid;
 }
 
 /* ADMIN PANEL, NAVBAR AND LOGIN */
 
 .AdminNavbar {
-    color:black;
-
+  color: black;
 }
 .AdminNavbar a {
-    color:black;
-    display:flex;
-    justify-content:center;
-    align-items:baseline;
-    font-size: 2em;
-    text-decoration: none;
-    font-family: "Quicksand";
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  font-size: 2em;
+  text-decoration: none;
+  font-family: "Quicksand";
 }
 .adminLogin {
-    margin-top:2em;
-    font-family: "Quicksand";
+  margin-top: 2em;
+  font-family: "Quicksand";
 }
 
 /* ZALOGUJ STYLES */
 .zaloguj {
-    margin-top:2em;
-    font-family: "Quicksand";
+  margin-top: 2em;
+  font-family: "Quicksand";
 }
-.loginForm{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    font-weight: 500;
+.loginForm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 500;
 }
-.loginForm input{
-    margin-bottom: 0.5em;
-    padding:0.5em;
-    width: 20em;
-    font-family: Arial,Helvetica,sans-serif;
+.loginForm input {
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+  width: 20em;
+  font-family: Arial, Helvetica, sans-serif;
 }
 #LogBut {
-    background:rgb(57, 151, 57);
-    color:white;
-    font-family: "Quicksand";
-    border-bottom: 2px black solid;
-    border-top:none;
-    border-left:none;
-    border-right:none;
-    border-radius: 2%;
-    width:19em;
-    height:3em;
-    font-size:15px;
-    font-weight:700;
-    margin-top:1em;
+  background: rgb(57, 151, 57);
+  color: white;
+  font-family: "Quicksand";
+  border-bottom: 2px black solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 2%;
+  width: 19em;
+  height: 3em;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 1em;
 }
 #LogBut:hover {
-    background:rgb(35, 94, 35);
+  background: rgb(35, 94, 35);
 }
 .LogComm {
-    padding:0.5em;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    font-size:15px;
-    color:black;
+  padding: 0.5em;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  color: black;
 }
 #ForgotPassword {
-    font-weight: 500;
+  font-weight: 500;
 }
 #RejLink {
-    background:rgb(88, 93, 88);
-    color:white;
-    font-family: "Quicksand";
-    border-bottom: 2px black solid;
-    border-top:none;
-    border-left:none;
-    border-right:none;
-    border-radius: 2%;
-    width:19em;
-    height:3em;
-    font-size:15px;
-    font-weight:700;
-    margin-top:0.5em;
-    text-decoration: none;
-    text-align: center;
-    display:flex;
-    justify-content: space-around;
-    flex-direction: column;
+  background: rgb(88, 93, 88);
+  color: white;
+  font-family: "Quicksand";
+  border-bottom: 2px black solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 2%;
+  width: 19em;
+  height: 3em;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 0.5em;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
 }
 #RejLink:hover {
-    background:rgb(31, 32, 31);
+  background: rgb(31, 32, 31);
 }
 /* RESET STYLES */
 .ResetP {
-    margin-top:2em;
-    font-family: "Quicksand";
+  margin-top: 2em;
+  font-family: "Quicksand";
 }
 .ResForm {
-    font-family: "Quicksand";
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    font-weight: 500;
+  font-family: "Quicksand";
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 500;
 }
 #ResBut {
-    background:rgb(57, 151, 57);
-    color:white;
-    font-family: "Quicksand";
-    border-bottom: 2px black solid;
-    border-top:none;
-    border-left:none;
-    border-right:none;
-    border-radius: 2%;
-    width:19em;
-    height:3em;
-    font-size:15px;
-    font-weight:700;
-    margin-top:1em;
+  background: rgb(57, 151, 57);
+  color: white;
+  font-family: "Quicksand";
+  border-bottom: 2px black solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 2%;
+  width: 19em;
+  height: 3em;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 1em;
 }
 #ResBut:hover {
-    background:rgb(35, 94, 35);
+  background: rgb(35, 94, 35);
 }
-.ResForm input{
-    margin-bottom: 0.5em;
-    padding:0.5em;
-    width: 20em;
-    font-family: Arial,Helvetica,sans-serif;
+.ResForm input {
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+  width: 20em;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* REJESTRACJA STYLES */
 .rejestracja {
-    margin-top:2em;
-    font-family: "Quicksand";
+  margin-top: 2em;
+  font-family: "Quicksand";
 }
 .signForm {
-    font-family: "Quicksand";
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    font-weight: 500;
-    text-align: center;
+  font-family: "Quicksand";
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 500;
+  text-align: center;
 }
 .Sbmt {
-    background:rgb(57, 151, 57);
-    color:white;
-    font-family: "Quicksand";
-    border-bottom: 2px black solid;
-    border-top:none;
-    border-left:none;
-    border-right:none;
-    border-radius: 2%;
-    width:19em;
-    height:3em;
-    font-size:15px;
-    font-weight:700;
-    margin-top:1em;
+  background: rgb(57, 151, 57);
+  color: white;
+  font-family: "Quicksand";
+  border-bottom: 2px black solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 2%;
+  width: 19em;
+  height: 3em;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 1em;
 }
 .Sbmt:hover {
-    background:rgb(35, 94, 35);
+  background: rgb(35, 94, 35);
 }
 .signForm input {
-    margin-bottom: 0.5em;
-    padding:0.5em;
-    width: 20em;
-    font-family: Arial,Helvetica,sans-serif;
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+  width: 20em;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .signComm {
-    padding:0.5em;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    font-size:15px;
-    color:black;
+  padding: 0.5em;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  color: black;
 }
 #LogLink {
-    background:rgb(88, 93, 88);
-    color:white;
-    font-family: "Quicksand";
-    border-bottom: 2px black solid;
-    border-top:none;
-    border-left:none;
-    border-right:none;
-    border-radius: 2%;
-    width:19em;
-    height:3em;
-    font-size:15px;
-    font-weight:700;
-    margin-top:0.5em;
-    text-decoration: none;
-    text-align: center;
-    display:flex;
-    justify-content: space-around;
-    flex-direction: column;
-}
-#LogLink:hover {
-    background:rgb(31, 32, 31);
+  background: rgb(88, 93, 88);
+  color: white;
+  font-family: "Quicksand";
+  border-bottom: 2px black solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 2%;
+  width: 19em;
+  height: 3em;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 0.5em;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
-.tabelka td, tr, th, table{
-    border: 1px solid black;
-    border-collapse: collapse;
+#LogLink:hover {
+  background: rgb(31, 32, 31);
+}
+
+.tabelka td,
+tr,
+th,
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 
 /* ZAMOWIENIA */
 .produkty {
-    font-family: "Quicksand";
+  font-family: "Quicksand";
 }
-.zamowienia{
-    font-family: "Quicksand";
+.zamowienia {
+  font-family: "Quicksand";
 }
 .klienci {
-    font-family: "Quicksand";
+  font-family: "Quicksand";
 }
 .platnosci {
-    font-family: "Quicksand";
+  font-family: "Quicksand";
 }
 .BackButton {
-    float: right;
-    margin-right: 2em;
-    background:rgb(57, 151, 57);
-    color:white;
-    border-bottom: 2px black solid;
-    border-top:none;
-    border-left:none;
-    border-right:none;
-    border-radius: 2%;
-    width:8em;
-    height:2em;
-    font-size:15px;
-    font-weight:700;
-    margin-top:0.5em;
-    text-decoration: none;
-    text-align: center;
-    display:flex;
-    justify-content: space-around;
-    flex-direction: column;
+  float: right;
+  margin-right: 2em;
+  background: rgb(57, 151, 57);
+  color: white;
+  border-bottom: 2px black solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 2%;
+  width: 8em;
+  height: 2em;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 0.5em;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
 }
 .prodaddForm {
-    font-size:17px;
-    font-family: "Quicksand";
-    margin-left: 1em;
+  font-size: 17px;
+  font-family: "Quicksand";
+  margin-left: 1em;
 }
+
 .prodaddForm input {
-    font-family: Arial,Helvetica,sans-serif;
-    color:black;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
 }
+
 .prodaddButton {
-    margin-top:1em;
-    width: 6em;
-    height:2em;
-    background:rgb(57, 151, 57);
-    color:white;
-    border-bottom: 2px black solid;
-    border-top:none;
-    border-left:none;
-    border-right:none;
-    border-radius: 2%;
+  margin-top: 1em;
+  width: 6em;
+  height: 2em;
+  background: rgb(57, 151, 57);
+  color: white;
+  border-bottom: 2px black solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 2%;
 }
 .prodaddButton:hover {
-    background:rgb(35, 94, 35);
+  background: rgb(35, 94, 35);
 }
 .produpdateForm {
-    font-size:17px;
-    font-family: "Quicksand";
-    margin-left: 1em;
+  font-size: 17px;
+  font-family: "Quicksand";
+  margin-left: 1em;
 }
 .produpdateButton {
-    margin-top:1em;
-    width: 6em;
-    height:2em;
-    background:rgb(57, 151, 57);
-    color:white;
-    border-bottom: 2px black solid;
-    border-top:none;
-    border-left:none;
-    border-right:none;
-    border-radius: 2%;
+  margin-top: 1em;
+  width: 6em;
+  height: 2em;
+  background: rgb(57, 151, 57);
+  color: white;
+  border-bottom: 2px black solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 2%;
 }
-.produpdateButton:hover{
-    background:rgb(35, 94, 35);
+.produpdateButton:hover {
+  background: rgb(35, 94, 35);
 }
 .tabButt {
-    background:rgb(57, 151, 57);
-    border-bottom: 2px black solid;
-    border-top:none;
-    border-left:none;
-    border-right:none;
-    border-radius: 2%;
-    color:white;
-    font-family: "Quicksand";
+  background: rgb(57, 151, 57);
+  border-bottom: 2px black solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 2%;
+  color: white;
+  font-family: "Quicksand";
 }
-.tabButt:hover{
-    background:rgb(35, 94, 35);
+.tabButt:hover {
+  background: rgb(35, 94, 35);
 }
 /* PRODUKTY */
 .panTab {
-    background: none;
-    width: 7em;
-    font-family: Arial, Helvetica, sans-serif;
-    color:white;
-    border:none;
-    font-size:17px;
-    font-family: "Quicksand";
+  background: none;
+  width: 7em;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  border: none;
+  font-size: 17px;
+  font-family: "Quicksand";
 }
 .platTab {
-    background: none;
-    width: 7em;
-    font-family: Arial, Helvetica, sans-serif;
-    color:white;
-    border:none;
-    font-size:17px;
-    font-family: "Quicksand";
+  background: none;
+  width: 7em;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  border: none;
+  font-size: 17px;
+  font-family: "Quicksand";
 }
 .pAddButt {
-    margin-top:0.2em;
-    border-bottom: 2px black solid;
-    border-radius: 2%;
-    background:rgb(88, 93, 88);
-    color:white;
-    font-family: "Quicksand";
+  margin-top: 0.2em;
+  border-bottom: 2px black solid;
+  border-radius: 2%;
+  background: rgb(88, 93, 88);
+  color: white;
+  font-family: "Quicksand";
 }
-.pAddButt:hover{
-    background:rgb(31, 32, 31);
+.pAddButt:hover {
+  background: rgb(31, 32, 31);
 }
 /* FOOTER STYLES */
 .footer {
-    background-color:rgb(21, 20, 20);
-    display: flex;
-    margin-top: 25em;
+  background-color: rgb(21, 20, 20);
+  display: flex;
+  margin-top: 25em;
+}
+
+#addIdStatusu {
+  font-family: "Quicksand";
+}
+#updateIdStatusu {
+  font-family: "Quicksand";
 }
 #addIdStatusu {
     font-family: "Quicksand";
 }
 #updateIdStatusu {
     font-family: "Quicksand";
+}
+
+.FeaturedBanner{
+  width:100%;
+}
+
+.SortLista {
+  border: 5px, black, round;
 }

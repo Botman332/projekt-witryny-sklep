@@ -1,91 +1,76 @@
-import React, {useEffect, useState} from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
-import PrivateRoute from "./PrivateRoute"
-import PrivateAdminRoute from "./PrivateAdminRoute"
-import Navbar from './Navbar';
-import Home from './Home';
-import Zaloguj from './Zaloguj';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./App.css";
+import PrivateRoute from "./PrivateRoute";
+import PrivateAdminRoute from "./PrivateAdminRoute";
+import Navbar from "./Navbar";
+import Home from "./Home";
+import Zaloguj from "./Zaloguj";
 import { AuthProvider } from "./contexts/AuthContext";
-import Rejestracja from './Rejestracja';
-import ResetPassword from './ResetPassword';
-import Footer from './Footer';
-import Admin from './Admin';
-import AdminLogin from './AdminLogin';
-import Zamowienia from './Zamowienia';
-import Produkty from './Produkty';
-import Klienci from './Klienci';
-import Kategorie from './Kategorie';
-import Platnosci from './Platnosci';
-
+import Rejestracja from "./Rejestracja";
+import ResetPassword from "./ResetPassword";
+import Footer from "./Footer";
+import Admin from "./Admin";
+import AdminLogin from "./AdminLogin";
+import Zamowienia from "./Zamowienia";
+import Produkty from "./Produkty";
+import Klienci from "./Klienci";
+import Kategorie from "./Kategorie";
+import Platnosci from "./Platnosci";
+import Produkt from "./Produkt";
+import KlientPanel from "./KlientPanel";
 
 function App() {
-
-  // const [backendData, setBackendData] = useState([{}])
-
-  // useEffect(() => {
-  //   fetch("/api").then(
-  //     response => response.json()
-  //   ).then(
-  //     data => {
-  //       setBackendData(data)
-  //     }
-  //   )
-  // }, [])
-
   return (
     <Router>
-      <div className='App'>
-        {/* {(typeof backendData.users === 'undefined') ? (
-      <p>Loading...</p>
-    ): (
-      backendData.users.map((user, i) => (
-      <p key={i}>{user}</p>
-      ))
-    )} */}
-    </div>
-    <AuthProvider>
-      <Navbar/>
+      <div className="App"></div>
+      <AuthProvider>
+        <Navbar />
         <Switch>
-        <PrivateAdminRoute path="/admin">
-            <Admin/>
+          <PrivateAdminRoute path="/admin">
+            <Admin />
           </PrivateAdminRoute>
           <PrivateAdminRoute path="/zamowienia">
-              <Zamowienia/>
+            <Zamowienia />
           </PrivateAdminRoute>
           <PrivateAdminRoute path="/produkty">
-              <Produkty/>
+            <Produkty />
           </PrivateAdminRoute>
           <PrivateAdminRoute path="/klienci">
-            <Klienci/>
+            <Klienci />
           </PrivateAdminRoute>
           <PrivateAdminRoute path="/platnosci">
-            <Platnosci/>
+            <Platnosci />
           </PrivateAdminRoute>
           <PrivateAdminRoute path="/kategorie">
-            <Kategorie/>
+            <Kategorie />
           </PrivateAdminRoute>
           <Route exact path="/">
-            <Home/>
+            <Home />
           </Route>
+          <Route path="/produkt/:id">
+            <Produkt />
+          </Route>
+          <PrivateRoute path="/panel-klienta/:id">
+            <KlientPanel />
+          </PrivateRoute>
           <Route path="/zaloguj">
-            <Zaloguj/>
+            <Zaloguj />
           </Route>
           <Route path="/zarejestruj">
-            <Rejestracja/>
+            <Rejestracja />
           </Route>
           <Route path="/reset-password">
-            <ResetPassword/>
+            <ResetPassword />
           </Route>
           <Route path="/admin-login">
-            <AdminLogin/>
+            <AdminLogin />
           </Route>
         </Switch>
-        <Footer/>
+        <Footer />
       </AuthProvider>
     </Router>
-    
-  )
+  );
 }
 
-export default App
+export default App;
