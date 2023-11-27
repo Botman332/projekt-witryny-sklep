@@ -47,7 +47,13 @@ const Home = () => {
       <div className="produkty">
         {prod.map((product, index) => (
           <div key={index} className="single-product">
-            <img src={require("./img/" + product.obraz)} alt={product.nazwa} />
+            <a href={"/produkt/" + product.produkt_ID}>
+              <img
+                src={require("./img/" + product.obraz)}
+                alt={product.nazwa}
+              />
+            </a>
+
             <h2>{product.nazwa}</h2>
             <p>Cena: {product.cena}</p>
           </div>
