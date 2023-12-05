@@ -29,7 +29,7 @@ export default function Rejestracja() {
           setError("")
           setLoading(true)
           await signup(emailRef.current.value, passwordRef.current.value)
-          await fetch(`${path}register-user`, {
+          await fetch(`${path}/register-user`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
