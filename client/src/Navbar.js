@@ -12,6 +12,7 @@ export default function Navbar() {
 
   // POBIERANIE KLIENTA ODPOWIADAJĄCEGO USEROWI Z FIREBASA
   async function getCurrentDbUser() {
+    if (currentUser){
     await fetch(`${path}/get-current-db-user`, {
       method: "POST",
       headers: {
@@ -29,7 +30,7 @@ export default function Navbar() {
         setcurrentDbUserID(data[0].klient_ID);
       });
   }
-
+  }
   useEffect(() => {
     getCurrentDbUser();
   }, []);
@@ -49,7 +50,7 @@ export default function Navbar() {
       <div className="navbar">
         <Link to="/">
           {" "}
-          <img className="Logo" src="logo.png" />{" "}
+          <img className="Logo" src="/logo.png" />{" "}
         </Link>
         <div className="navTxt">
           {!currentUser && (
@@ -62,13 +63,13 @@ export default function Navbar() {
               Wyloguj się
             </button>
           )}
-
-          <Link to={"/panel-klienta/" + currentDbUserID} id="">
+          {currentUser && (
+          <Link to={"/panel-klienta/" + currentDbUserID} id="KlientNav">
             Panel Klienta
           </Link>
-
+          )}
           {currentUser && (
-            <Link to="Admin" id="AdminNav">
+            <Link to="/Admin" id="AdminNav">
               Panel Administratora
             </Link>
           )}
@@ -78,6 +79,10 @@ export default function Navbar() {
             </Link>
           )}
         </div>
+        <Link to="/Koszyk">
+          {" "}
+          <img className="Koszyk" src="/cart.png" />{" "}
+        </Link>
       </div>
       {currentUser && <strong>Zalogowano jako: {currentUser.email}</strong>}
     </div>

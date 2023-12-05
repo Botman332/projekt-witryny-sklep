@@ -1,9 +1,16 @@
 import React, { useRef, useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 const Home = () => {
+
+
+
   const path = process.env.REACT_APP_PATH;
   let [produkty, setProdukty] = useState([]);
   const [sorted, setSorted] = useState("relevant");
+
+
+
 
   async function getProdukty() {
     await fetch(`${path}/get-produkty`, {
@@ -44,6 +51,7 @@ const Home = () => {
 
   function ProduktyDisplay({ prod }) {
     return (
+      
       <div className="produkty">
         {prod.map((product, index) => (
           <div key={index} className="single-product">
@@ -64,13 +72,18 @@ const Home = () => {
 
   return (
     <div className="homepage">
+      <Link to="/produkt/8">
+          {" "}
+          <img className="FeaturedBanner" src="/Album_Header_Utopia.png" />{" "}
+        </Link>
       <h1>STRONA GŁÓWNA</h1>
-
-      <select name="" id="" value={sorted} onChange={handleSelectChange}>
+      <div className="SortLista">
+      <select name="" id="" className="SortLista" value={sorted} onChange={handleSelectChange}>
         <option value="relevant">Najbardziej odpowiednie</option>
         <option value="priceAsc">Cena Rosnąco</option>
         <option value="priceDesc">Cena malejąco</option>
       </select>
+      </div>
 
       <div className="home-main">
         <div className="parametry">
