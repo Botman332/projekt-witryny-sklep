@@ -44,10 +44,17 @@ h1 {
 
 /* NAVBAR STYLES */
 .Logo {
-  height: 120px;
-  width: 120px;
+  width:200px;
   align-items: center;
   margin-left: 1em;
+}
+
+.Koszyk {
+  height: 70px;
+  width: 70px;
+  color: white;
+  float:right;
+  margin-right:1em;
 }
 #LogNav {
   color: white;
@@ -55,6 +62,9 @@ h1 {
 #AdminNav {
   color: white;
 }
+#KlientNav {
+    color: white;
+  }
 .LogOutNav {
   background: none;
   width: 7em;
@@ -65,6 +75,7 @@ h1 {
   font-family: "Quicksand";
 }
 .navTxt {
+  margin-left: 70em;
   display: flex;
   justify-content: flex-end;
   flex-direction: row;
@@ -72,6 +83,8 @@ h1 {
 }
 .navbar {
   background-color: rgb(21, 20, 20);
+  display: flex;
+
 }
 
 .navbar a {
@@ -422,4 +435,18 @@ table {
 }
 #updateIdStatusu {
   font-family: "Quicksand";
+}
+#addIdStatusu {
+    font-family: "Quicksand";
+}
+#updateIdStatusu {
+    font-family: "Quicksand";
+}
+
+.FeaturedBanner{
+  width:100%;
+}
+
+.SortLista {
+  border: 5px, black, round;
 }

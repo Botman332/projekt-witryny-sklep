@@ -175,6 +175,7 @@ useEffect(() => {
             <label>ID Zamówienia</label>
             <br/>
             <input type="text" ref={addIdZamowienia} required/>
+
             <br/>
             <label for="addIdStatusu">Status</label>
                 <br/>
